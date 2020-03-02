@@ -1,0 +1,6 @@
+#Ficheros y carpetas ignorados por GIT
+
+/bin/
+/.classpath
+/.project
+/.settings
