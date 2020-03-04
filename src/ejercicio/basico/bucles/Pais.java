@@ -7,9 +7,9 @@ public class Pais {
 	private int  infectados;
 
 	public Pais(String nombre, boolean estado, int infectados) {
-		this.nombre = "";
-		this.estado = false;
-		this.infectados = 0;
+		this.nombre = nombre;
+		this.estado = estado;
+		this.infectados = infectados;
 	}
 
 	public String getNombre() {
@@ -36,4 +36,12 @@ public class Pais {
 	public void setInfectados(int infectados) {
 		this.infectados = infectados;
 	}
+
+	@Override
+	public String toString() {
+		return "Pais [nombre=" + nombre + ", estado=" + estado + ", infectados=" + infectados + "]";
+	}
+	
+	
+	
 }
