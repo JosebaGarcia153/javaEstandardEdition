@@ -162,10 +162,9 @@ public class EjerciciosArrayList {
 		for (int i = 0; i < (rotacion.size()-1); i++) {
 			System.out.println(rotacion.get(i));
 		}
-		
 	}
 	
-//	fghdgshjrry
+//	
 //	public void ejercicio4() {
 //		
 //	}
