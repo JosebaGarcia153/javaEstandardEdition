@@ -17,7 +17,7 @@ public class Searcher {
 		
 		for (int i = 0; i < country.size(); i++) {
 			
-			if (country.get(i).getName().contains(cName)) {
+			if (country.get(i).getName().toLowerCase().contains(cName)) {
 				
 				System.out.println(country.get(i).toString());
 				check = true;

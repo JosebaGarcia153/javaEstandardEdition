@@ -30,17 +30,17 @@ public class EjercicioB {
 			switch (opciones) {
 			case 1:
 				
-				String[] letra = {"T", "R", "W", "A","G", "M", "Y",
-								  "F", "P", "D", "X", "B", "N", "J",
-								  "Z", "S", "Q", "V", "H", "L", "C",
-								  "K", "E"};
+				final char[] LETRA_DNI = {'T', 'R', 'W', 'A','G', 'M', 'Y',
+								  'F', 'P', 'D', 'X', 'B', 'N', 'J',
+								  'Z', 'S', 'Q', 'V', 'H', 'L', 'C',
+								  'K', 'E'};
 				
 				System.out.println("Inserta el numero del DNI:");
 				int numero = Integer.parseInt(keyboard.nextLine());
 				
 				int posicionArray = numero%23;
 				
-				System.out.println("El DNI con su letra es: " + numero + "-" + letra[posicionArray]);
+				System.out.println("El DNI con su letra es: " + numero + "-" + LETRA_DNI[posicionArray]);
 				
 				break;
 				

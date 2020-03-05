@@ -26,7 +26,6 @@ public class Menu {
 				+ "\n 5) Close the program.");
 		
 		options = Integer.parseInt(keyboard.nextLine());
-		boolean finish = false;
 		
 		do {
 			switch (options) {
@@ -61,12 +60,12 @@ public class Menu {
 			}
 			
 			
-		} while (finish);
+		} while (options != 5);
 		
 		keyboard.close();
 	}
 	
 	public void terminate() {
-		System.out.println("The progam has been closed.");
+		System.out.println("The program has been closed.");
 	}
 }
