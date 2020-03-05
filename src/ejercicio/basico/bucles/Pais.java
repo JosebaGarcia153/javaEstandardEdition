@@ -6,7 +6,7 @@ public class Pais {
 	private boolean estado;
 	private int  infectados;
 
-	public Pais(String nombre, boolean estado, int infectados) {
+	public Pais() {
 		this.nombre = nombre;
 		this.estado = estado;
 		this.infectados = infectados;

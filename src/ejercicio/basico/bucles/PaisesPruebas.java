@@ -10,10 +10,10 @@ public class PaisesPruebas {
 		
 		Pais[] paises = new Pais[4];
 		
-		Pais pais1 = new Pais("", false, 0);
-		Pais pais2 = new Pais("", false, 0);
-		Pais pais3 = new Pais("", false, 0);
-		Pais pais4 = new Pais("", false, 0);
+		Pais pais1 = new Pais();
+		Pais pais2 = new Pais();
+		Pais pais3 = new Pais();
+		Pais pais4 = new Pais();
 		
 		pais1.setNombre("Noruega");
 		pais2.setNombre("Alemania");
