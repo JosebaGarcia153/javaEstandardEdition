@@ -1,5 +1,6 @@
 package ejercicio.programa.perrera;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AppPerrera {
@@ -7,6 +8,8 @@ public class AppPerrera {
 	static PerroDAO dao = new PerroDAOImpl();
 
 	static Scanner keyboard = new Scanner(System.in);
+	
+	static ArrayList dogs;
 	
 	public static void main(String[] args) {
 		
@@ -22,7 +25,7 @@ public class AppPerrera {
 		
 		instructions();
 		
-		int options;
+		int options = 0;
 		
 		do {
 			
@@ -32,6 +35,7 @@ public class AppPerrera {
 			case 1:
 				
 				System.out.println(dao.getAll().toString());
+
 				break;
 				
 			case 2:
@@ -41,7 +45,13 @@ public class AppPerrera {
 				 */
 				System.out.println("Search for dogs by name:");
 				String nombre = keyboard.nextLine();
-				dao.buscarPorNombre(nombre);
+				
+				dogs = dao.buscarPorNombre(nombre);
+				
+				for (int i = 0; i < dogs.size(); i++) {
+					System.out.println(dogs.toString());
+				}
+				
 				break;
 				
 			case 3:

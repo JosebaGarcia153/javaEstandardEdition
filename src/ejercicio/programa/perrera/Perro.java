@@ -9,11 +9,16 @@ public class Perro {
 	// Constructores
 	
 	public Perro() {
-		super();
-		// un peroo inicialmente
+		// un perro inicialmente
 		this.id = 0;
 		this.nombre = "";
 		this.raza = "cruce";
+	}
+	
+	public Perro(int id, String nombre, String raza) {
+		this.id = id;
+		this.nombre = nombre;
+		this.raza = raza;
 	}
 	
 	public Perro(String nombre) {
@@ -50,7 +55,7 @@ public class Perro {
 	
 	@Override
 	public String toString() {
-		return "Perro [id=" + id + ", nombre=" + nombre + ", raza=" + raza + "]\n";
+		return "ID: " + id + " | Name: " + nombre + " | Race: " + raza;
 	}
 
 }

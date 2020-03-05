@@ -7,7 +7,6 @@ public class PerroDAOImpl implements PerroDAO {
 	private ArrayList<Perro> perros;
 
 	public PerroDAOImpl() {
-		super();
 		this.perros = new ArrayList<Perro>();
 
 		this.perros.add(new Perro("Bubba"));
@@ -21,8 +20,16 @@ public class PerroDAOImpl implements PerroDAO {
 
 	@Override
 	public ArrayList<Perro> buscarPorNombre(String nombre) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ArrayList<Perro> perroByName = new ArrayList<Perro>();
+		
+		for (int i = 0; i < perros.size(); i++) {
+			if (perros.get(i).getNombre().toLowerCase().contains(nombre)) {
+				
+				perroByName.add(new Perro(perros.get(i).getId(), perros.get(i).getNombre(), perros.get(i).getRaza()));
+			}
+		}
+		return perroByName;
 	}
 
 	@Override
