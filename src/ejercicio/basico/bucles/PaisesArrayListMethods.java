@@ -1,6 +1,5 @@
 package ejercicio.basico.bucles;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PaisesArrayListMethods {
@@ -18,6 +17,8 @@ public class PaisesArrayListMethods {
 				+ "\n 3) Delete an entry."
 				+ "\n 4) Search an specific entry."
 				+ "\n 5) Terminate program");
+		
+		options = Integer.parseInt(keyboard.nextLine());
 		
 		switch (options) {
 		
@@ -39,7 +40,15 @@ public class PaisesArrayListMethods {
 			
 			case 5:
 				terminate();
-				break;		
+				break;	
+				
+			default:
+				System.out.println("Please select a valid option number."
+						+ "\n 1) Show full list.\n 2) Add a new entry."
+						+ "\n 3) Delete an entry."
+						+ "\n 4) Search an specific entry."
+						+ "\n 5) Terminate program");
+				break;
 		}
 	}
 	

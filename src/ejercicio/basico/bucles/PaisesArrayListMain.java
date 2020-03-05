@@ -1,7 +1,6 @@
 package ejercicio.basico.bucles;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class PaisesArrayListMain {
 	
@@ -20,7 +19,7 @@ public class PaisesArrayListMain {
 	
 	
 	 static void crearPaises() {
-		 list = new ArrayList<Pais>();
+		list = new ArrayList<Pais>();
 		list.add(new Pais ("Norway", false, 0));
 		list.add(new Pais ("Germany", true, 50));
 		list.add(new Pais ("Czech Republic", false, 0));

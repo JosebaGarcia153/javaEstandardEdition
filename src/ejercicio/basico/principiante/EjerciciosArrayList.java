@@ -3,8 +3,6 @@ package ejercicio.basico.principiante;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.text.html.HTMLDocument.Iterator;
-
 /**
  * @see http://puntocomnoesunlenguaje.blogspot.com/2016/02/ejemplo-de-arraylist-en-java.html
  * @author Joseba
@@ -16,6 +14,7 @@ public class EjerciciosArrayList {
 	
 	ArrayList<Double> alturas = new ArrayList<Double>();
 	ArrayList<Integer> valores = new ArrayList<Integer>();
+	ArrayList<Integer> rotacion = new ArrayList<Integer>();
 	
 	public void ejercicio1() {
 
@@ -25,7 +24,7 @@ public class EjerciciosArrayList {
 		mostrarResultados(alturas, mediaAlumnos);
 	}
 
-	public int numeroAlumnos() { //Determina el cual sera el tamañodel arraylist
+	public int numeroAlumnos() { //Determina el cual sera el tamaño del arraylist
 		
 		int alumnos;
 		
@@ -43,7 +42,7 @@ public class EjerciciosArrayList {
 		}
 	}
 	
-	public double calcularMedias(ArrayList<Double> alturas) { //lee el arraylist para hacer una operacion y devuelve el resultado
+	public double calcularMedias(ArrayList<Double> alturas) { //Lee el arraylist para hacer una operacion y devuelve el resultado
 		
 		double media = 0;
 		
@@ -141,9 +140,31 @@ public class EjerciciosArrayList {
 		 * No se puede utilizar un array auxiliar para reailzar el proceso.
 		 */
 		
-		ArrayList<Integer> rotacion = new ArrayList<Integer>();
+		rotacion.add(5);
+		rotacion.add(7);
+		rotacion.add(8);
+		rotacion.add(12);
+		
+		rotate(rotacion);
 		
 	}
+	
+	public void rotate(ArrayList<Integer> rotacion) {
+
+		int valorGuardado;
+		
+		for (int i = 0; i < (rotacion.size()-1); i++) {
+			valorGuardado = rotacion.get(i);
+			rotacion.remove(i);
+			rotacion.add(valorGuardado);
+		}
+		/////////////////////////////////////////
+		for (int i = 0; i < (rotacion.size()-1); i++) {
+			System.out.println(rotacion.get(i));
+		}
+		
+	}
+	
 //	
 //	public void ejercicio4() {
 //		
@@ -156,8 +177,8 @@ public class EjerciciosArrayList {
 	public static void main(String[] args) {
 		
 		EjerciciosArrayList ejercicios = new EjerciciosArrayList();
-		ejercicios.ejercicio1();
-		ejercicios.ejercicio2();
+//		ejercicios.ejercicio1();
+//		ejercicios.ejercicio2();
 		ejercicios.ejercicio3();
 //		ejercicios.ejercicio4();
 //		ejercicios.ejercicio5();
