@@ -23,25 +23,71 @@ public class PerroDAOImpl implements PerroDAO {
 		
 		ArrayList<Perro> perroByName = new ArrayList<Perro>();
 		
-		for (int i = 0; i < perros.size(); i++) {
-			if (perros.get(i).getNombre().toLowerCase().contains(nombre)) {
-				
-				perroByName.add(new Perro(perros.get(i).getId(), perros.get(i).getNombre(), perros.get(i).getRaza()));
+		try {
+			
+			for (int i = 0; i < perros.size(); i++) {
+				if (perros.get(i).getNombre().toLowerCase().contains(nombre)) {
+					
+					perroByName.add(new Perro(perros.get(i).getId(), perros.get(i).getNombre(), perros.get(i).getRaza()));
+				}
 			}
+		
+		} catch (Exception e) {
+			System.out.println("There are no dog names in the system yet.");
 		}
+		
 		return perroByName;
 	}
 
 	@Override
 	public ArrayList<Perro> buscarPorRaza(String raza) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ArrayList<Perro> perroByRace = new ArrayList<Perro>();
+		
+		try {
+			
+			for (int i = 0; i < perros.size(); i++) {
+				
+				if (perros.get(i).getRaza().toLowerCase().contains(raza)) {
+					
+					perroByRace.add(new Perro(perros.get(i).getId(), perros.get(i).getNombre(), perros.get(i).getRaza()));
+					
+				}         
+			}
+			
+		} catch (Exception e) {
+			
+			System.out.println("There are no dog races in the system yet.");
+			
+		}
+		
+		return perroByRace;
 	}
 
 	@Override
 	public Perro getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Perro perroByID = new Perro();
+		
+		try {
+			
+			for (int i = 0; i < perros.size(); i++) {
+				if (perros.get(i).getId() == id) {
+					
+					perroByID.setId(perros.get(i).getId());
+					perroByID.setNombre(perros.get(i).getNombre());
+					perroByID.setRaza(perros.get(i).getRaza());
+					
+				}
+			}
+		
+		} catch (Exception e) {
+			
+			System.out.println("There are no dog IDs in the system yet.");
+		
+		}
+		
+		return perroByID; //TODO ???
 	}
 
 	@Override
