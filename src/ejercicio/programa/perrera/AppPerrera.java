@@ -9,32 +9,32 @@ public class AppPerrera {
 
 	static Scanner keyboard = new Scanner(System.in);
 	
-	static ArrayList dogs;
+	static ArrayList<Perro> dogs;
+	
+	static Perro dog;
 	
 	public static void main(String[] args) {
 		
-		
 		System.out.println("Graphic Interface");
 		pintarMenu();
-
-
-
 	}
 
 	static void pintarMenu() {
 		
-		instructions();
-		
-		int options = 0;
+		int options;		
 		
 		do {
 			
-			options = Integer.parseInt(keyboard.nextLine());
+			 options = instructions();
 			
 			switch (options) {
 			case 1:
 				
-				System.out.println(dao.getAll().toString());
+				dogs = dao.getAll();
+				
+				for (int i = 0; i < dogs.size(); i++) {
+					System.out.println(dogs.toString());
+				}
 
 				break;
 				
@@ -49,21 +49,44 @@ public class AppPerrera {
 				dogs = dao.buscarPorNombre(nombre);
 				
 				for (int i = 0; i < dogs.size(); i++) {
-					System.out.println(dogs.toString());
+					System.out.println(dogs.get(i).toString());
+				}
+				
+				if (dogs.size() == 0) {
+					System.out.println("There are no results for this search.");
+				}
+				break;
+				
+			case 3:
+				
+				System.out.println("Search for dogs by ID:");
+				int id = Integer.parseInt(keyboard.nextLine());
+				
+				dog = dao.getById(id);
+				
+				System.out.println(dog.toString());
+				
+				if (dog == null) {
+					System.out.println("There are no results for this search.");
 				}
 				
 				break;
 				
-			case 3:
+			case 4:
+				
 				System.out.println("Search for dogs by race:");
 				String raza = keyboard.nextLine();
-				dao.buscarPorRaza(raza);
-				break;
 				
-			case 4:
-				System.out.println("Search for dogs by ID:");
-				int id = Integer.parseInt(keyboard.nextLine());
-				dao.getById(id);
+				dogs = dao.buscarPorRaza(raza);
+				
+				for (int i = 0; i < dogs.size(); i++) {
+					System.out.println(dogs.get(i).toString());
+				}
+				
+				if (dogs.size() == 0) {					
+					System.out.println("There are no results for this search.");	
+				}
+				
 				break;
 				
 			case 5:
@@ -79,7 +102,7 @@ public class AppPerrera {
 				break;
 				
 			case 8:
-				terminate();
+				System.out.println("The program has been closed.");
 				break;
 				
 			default:
@@ -91,7 +114,8 @@ public class AppPerrera {
 		keyboard.close();
 	}
 	
-	static void instructions() {
+	static int instructions() {
+		
 		System.out.println("Select one of the following actions:"
 				+ "\n 1)List all the dogs"
 				+ "\n 2)List dogs by name"
@@ -101,9 +125,9 @@ public class AppPerrera {
 				+ "\n 6)Delete dog"
 				+ "\n 7)Edit dog data"
 				+ "\n 8)Close the program");
-	}
-	
-	static public void terminate() {
-		System.out.println("The program has been closed.");
+		
+		int options = Integer.parseInt(keyboard.nextLine());
+		
+		return options;
 	}
 }
