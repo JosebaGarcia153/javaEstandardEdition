@@ -22,6 +22,7 @@ public class Perro {
 	}
 	
 	public Perro(String nombre) {
+		this();
 		this.nombre = nombre;
 	}
 	

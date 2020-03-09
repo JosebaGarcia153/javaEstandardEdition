@@ -21,13 +21,6 @@ public class PerroDAOImpl implements PerroDAO {
 		
 		ArrayList<Perro> allDogs = new ArrayList<Perro>();
 		
-		for (int i = 0; i < perros.size(); i++) {
-			
-			if (perros.get(i).getRaza() == null) {
-				
-				perros.get(i).setRaza("cruce");
-			}         
-		}
 		
 		for (int i = 0; i < perros.size(); i++) {
 			
@@ -49,13 +42,7 @@ public class PerroDAOImpl implements PerroDAO {
 		
 		ArrayList<Perro> perroByName = new ArrayList<Perro>();
 		
-		for (int i = 0; i < perros.size(); i++) {
-			
-			if (perros.get(i).getRaza() == null) {
-				
-				perros.get(i).setRaza("cruce");
-			}         
-		}
+		
 		
 		for (int i = 0; i < perros.size(); i++) {
 			
@@ -80,13 +67,7 @@ public class PerroDAOImpl implements PerroDAO {
 		
 		ArrayList<Perro> perroByRace = new ArrayList<Perro>();	
 		
-		for (int i = 0; i < perros.size(); i++) {
-			
-			if (perros.get(i).getRaza() == null) {
-				
-				perros.get(i).setRaza("cruce");
-			}         
-		}
+	
 			
 		for (int i = 0; i < perros.size(); i++) {
 			
