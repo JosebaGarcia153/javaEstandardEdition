@@ -27,57 +27,129 @@ public class Utilidades {
 	 * @param nombre
 	 * @param idioma
 	 */
-	static void saludar(String nombre, String idioma) {
-		try {
-			
-			if (idioma == IDIOMA_CASTELLANO) {
 
-				System.out.println("Hola  " + nombre);
+	static String saludar(String nombre, String idioma) throws Exception {
+		String saludo = "";
+		switch (idioma) {
+		case IDIOMA_CASTELLANO:
+			saludo = "Hola " + nombre;
+			break;
+		case IDIOMA_EUSKERA:
+			saludo = "Kaixo " + nombre;
+			break;
+		case IDIOMA_INGLES:
+			saludo = "Hello " + nombre;
+			break;
 
-			} else if (idioma == IDIOMA_EUSKERA) {
-
-				System.out.println("Kaixo  " + nombre);
-
-			} else {
-				System.out.println("Hello  " + nombre);
-			}
-		} catch (Exception e) {
-			
-			System.out.println("The selected language is not included in the program");
+		default:
+			throw new Exception("Idioma no permitido " + idioma);
+		// break;
 		}
+
+		return saludo;
+
 	}
 
 	static int suma(int a, int b) {
 		return a + b;
 	}
 
-	static char calcularLetraDni(int dni) {
-		//TODO
-		int posicionArray;
-		String dniStr; 
-
-		posicionArray = dni%23;
-
-
-		posicionArray = 0;
-		dniStr = Integer.toString(dni);
-
-		posicionArray = dni%23;
-
-
-		if (dniStr.length() != DNI_SIZE) {
-
-			return ' ';
-		}
-
-		return LETRA_DNI[posicionArray];
+//	static char calcularLetraDni(int dni) throws Exception {
+//		//TODO
+//		int posicionArray = 0;
+//		String dniStr; 
+//
+//		dniStr = Integer.toString(dni);
+//
+//		if (dni <= 00000000 || dni >= 99999999 || dniStr.length() != DNI_SIZE) {
+//			
+//			throw new Exception ("No es un DNI valido.");
+//			
+//		} else {
+//			
+//			posicionArray = dni%23;
+//		}
+//
+//		return LETRA_DNI[posicionArray];
+//	}
+//	//sobrecarga, no es sobreescritura override
+//	static char calcularLetraDni(String dni) throws Exception {
+//		
+//		int dniNum = Integer.parseInt(dni);	
+//		return calcularLetraDni(dniNum);
+//	}
+	
+	static char calcularLetraDni(int dni) throws Exception {
+		String sDni = String.valueOf(dni);
+		return calcularLetraDni(sDni);
 	}
 
-	static char calcularLetraDni(String dni) {
+	// DRY Dont Repeat Yourself
+	// sobercarga, no es sobre-escritura @override
+	// sobrecraga es el mismo nombre de metodo, mismo retorno, pero diferentes
+	// parametros
+	static char calcularLetraDni(String dni) throws Exception {
+		char letra = ' ';
+		int numeroDni = 0;
+		try {
 			
-		int dniNum = Integer.parseInt(dni);
-		
-		return calcularLetraDni(dniNum);
+			if (dni != null && dni.length() == 8) {
 
+				numeroDni = Integer.parseInt(dni);
+				int restoDivision = numeroDni % 23;
+				letra = LETRA_DNI[restoDivision];
+			} else {
+				throw new Exception("No es un DNI valido " + dni);
+			}
+			
+		} catch (NumberFormatException e) {
+			throw new Exception("No es un numero.");
+		}		
+		return letra;
 	}
+	
+	static int[] bubbleShort(int[] aDesordenado) {
+
+		int[] aOrdenado = new int[aDesordenado.length];
+		
+		aOrdenado = aDesordenado;
+		
+		int savedNum = 0;
+	
+		for (int i = 0; i < (aOrdenado.length-1); i++) {
+
+			if (aOrdenado[i] > aDesordenado[(i+1)]) {
+
+				savedNum = aOrdenado[i];
+				aOrdenado[i] = aOrdenado[(i+1)];
+				aOrdenado[(i+1)] = savedNum;
+				i = 0;
+			} 
+		} 
+
+		return aOrdenado;
+	}
+	
+//	static int[] bubbleShort1(int[] aDesordenado) {
+//
+//		int[] aOrdenado = new int[aDesordenado.length];
+//		
+//		aOrdenado = aDesordenado; 
+//		
+//		int savedNum = 0;
+//		
+//		for(int i=0; i < aOrdenado.length; i++) {
+//
+//			for(int j=1; j < (aOrdenado.length-i); j++) {
+//				
+//				if(aOrdenado[j-1] > aDesordenado[j]) {   
+//
+//					savedNum = aOrdenado[j-1];  
+//					aOrdenado[j-1] = aDesordenado[j];  
+//					aDesordenado[j] = savedNum;  
+//				}  
+//			}  
+//		}
+//		return aOrdenado;  
+//	} 
 }
