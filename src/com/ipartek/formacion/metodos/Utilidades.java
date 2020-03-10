@@ -53,48 +53,24 @@ public class Utilidades {
 
 	static char calcularLetraDni(int dni) {
 		//TODO
-		int posicionArray = 0;
-		String dniStr = Integer.toString(dni);
-		
+		int posicionArray;
+		String dniStr; 
+
 		posicionArray = dni%23;
-		try {
-				
-			if (dniStr.length() != DNI_SIZE) {
-				
-			throw new Exception ("Please insert a valid DNI.");
-			}
-		} catch (IndexOutOfBoundsException e) {
-			
-			System.out.println();
+
+
+		posicionArray = 0;
+		dniStr = Integer.toString(dni);
+
+		posicionArray = dni%23;
+
+
+		if (dniStr.length() != DNI_SIZE) {
+
+			return ' ';
 		}
-		
+
 		return LETRA_DNI[posicionArray];
-		
-
-			
-			try {
-				
-				if (dni.length() == DNI_SIZE) {
-					
-					dniNum = Integer.parseInt(dni);
-
-					
-				} else {
-					
-					System.out.println("Please insert a valid DNI.");
-					
-				}
-
-			} catch (Exception e) {
-				
-				System.out.println("Please insert a valid DNI.");	
-			}
-			
-		
-		
-		int arrayPosition = dniNum%23;
-		
-		System.out.println("The full DNI is: " + dniNum + "-" + DNI_LETTER[arrayPosition]);
 	}
 
 	static char calcularLetraDni(String dni) {
