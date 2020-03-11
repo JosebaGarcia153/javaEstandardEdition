@@ -12,21 +12,36 @@ public class Vueltas {
 		float cost = importe;
 		float paid = entregado;
 		
-		for (int i = 0; i < vueltas.length; i++) {
+		if (cost > paid) {
 			
-			if ((BILLETES_MONEDAS[i] <= cost) && (cost != 0)) {
-				
-				vueltas[i]++;
-				
-				cost = cost - BILLETES_MONEDAS[i];
-				i = (i-1);
+			for (int i = 0; i < vueltas.length; i++) {
+
+				if ((BILLETES_MONEDAS[i] <= cost) && (cost != 0)) {
+
+					vueltas[i] = vueltas[i] + 1;
+
+					cost = cost - BILLETES_MONEDAS[i];
+					i = (i-1);
+
+				}
+			}	
+		} else {
+			
+			for (int i = 0; i < vueltas.length; i++) {
+				if ((BILLETES_MONEDAS[i] <= paid) && (paid != 0)) {
+					vueltas[i] = vueltas[i] + 1;
+
+					paid = paid - BILLETES_MONEDAS[i];
+					i = (i-1);
+				}
 				
 			}
-		}	
+		}
 
 		return vueltas;
 	}
 
+	
 	public static float calcularVueltas(float importe, float entregado) throws Exception {
 		
 		float cost = importe;
