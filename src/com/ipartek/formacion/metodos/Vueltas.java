@@ -9,33 +9,36 @@ public class Vueltas {
 
 		int[] vueltas = new int[BILLETES_MONEDAS.length];
 		
-		float cost = importe;
-		float paid = entregado;
+		float diferencia;
 		
-		if (cost > paid) {
+		if (importe == entregado) { //Dinero entregado es el mismo que el importe
+			
+			vueltas = vueltas;
+			
+		} else if (importe < entregado) { //Dinero entregado mayor que el importe
+			
+			//Calcula el dinero a devolver
+			diferencia = entregado - importe;
 			
 			for (int i = 0; i < vueltas.length; i++) {
-
-				if ((BILLETES_MONEDAS[i] <= cost) && (cost != 0)) {
-
-					vueltas[i] = vueltas[i] + 1;
-
-					cost = cost - BILLETES_MONEDAS[i];
-					i = (i-1);
-
-				}
-			}	
-		} else {
-			
-			for (int i = 0; i < vueltas.length; i++) {
-				if ((BILLETES_MONEDAS[i] <= paid) && (paid != 0)) {
-					vueltas[i] = vueltas[i] + 1;
-
-					paid = paid - BILLETES_MONEDAS[i];
-					i = (i-1);
-				}
 				
+				//Examina el precio necesario del billete o moneda a devolver
+				if ((BILLETES_MONEDAS[i] <= diferencia)) {
+					
+					//Reduce la cantidad a devolver a su vez que el dinero devuelto aumenta
+					diferencia = diferencia - BILLETES_MONEDAS[i];
+					vueltas[i] = vueltas[i] + 1;
+					
+					/* Vuelve a mirar si se necesitan devolver billetes de este tipo
+					 * antes de pasar al siguiente
+					*/
+					i = (i-1);
+				}
 			}
+			//
+		} else { //Dinero entregado menor que el importe
+			
+			throw new Exception("No hay suficiente dinero.");
 		}
 
 		return vueltas;
@@ -43,11 +46,12 @@ public class Vueltas {
 
 	
 	public static float calcularVueltas(float importe, float entregado) throws Exception {
-		
-		float cost = importe;
-		float paid = entregado;
-		float change = 0f;
 
-		return change = paid - cost;
+		float change = 0f;
+		
+		if (importe > entregado) {
+			throw new Exception("Not enough money.");
+		}
+		return change = entregado - importe;
 	}
 }

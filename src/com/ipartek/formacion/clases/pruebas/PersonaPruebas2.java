@@ -1,6 +1,7 @@
-package com.ipartek.formacion.clases;
+package com.ipartek.formacion.clases.pruebas;
+import com.ipartek.formacion.clases.*;
 
-public class PersonaPruebas {
+public class PersonaPruebas2 {
 
 	public static void main(String[] args) {
 		
