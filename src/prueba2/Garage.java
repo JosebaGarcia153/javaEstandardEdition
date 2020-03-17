@@ -20,7 +20,10 @@ public class Garage {
 		ArrayList<Car> cars = new ArrayList<Car>();
 		Car c = new Car();
 		
+		System.out.println("Add up to 3 cars into the garage's car list.");
+		
 		do {
+			//Saves data of the next entry in the arrayList
 			try {
 				System.out.println("Type the plate of the car:");
 				c.setPlate(keyboard.nextLine());
@@ -48,15 +51,16 @@ public class Garage {
 					throw new Exception("The inserted number must be above 0.");
 				}
 				
-	
+				//Confirms if you want to add the entry
 				do {
 					System.out.println("Are you sure you want to add this car? Y/N");
-					check = keyboard.nextLine().charAt(0);
+					check = keyboard.nextLine().toLowerCase().charAt(0);
 
 					if ('y' == check) {
 
 						cars.add(new Car(c.getPlate(), c.getBrand(), c.getModel(), c.getColor(), c.getHorsePower(), c.getEngineCapacity()));
 						confirmCheck = true;
+						carNumber++;
 						
 					} else if  ('n' == check) {
 
@@ -70,32 +74,36 @@ public class Garage {
 					}
 				} while (confirmCheck == false);
 				
-				
-				
-				do {
-					System.out.println("Do you want to add another car? Y/N");
-					check = keyboard.nextLine().charAt(0);
+				//Asks if you want to add another entry
+				if (carNumber < 3) {
+					
+					do {
+						System.out.println("Do you want to add another car? Y/N");
+						check = keyboard.nextLine().toLowerCase().charAt(0);
 
-					if ('y' == check) {
-						
-						addMore = true;
-						addMoreCheck = true;
-						
-					} else if  ('n' == check) {
-						
-						addMore = false;
-						addMoreCheck = true;
-						
-					} else {
-						
-						System.out.println("You didn't insert Y or N.");
-						addMoreCheck = false;
-						
-					}
-				} while (addMoreCheck == false);
-				
+						if ('y' == check) {
+
+							addMore = true;
+							addMoreCheck = true;
+
+						} else if  ('n' == check) {
+
+							addMore = false;
+							addMoreCheck = true;
+
+						} else {
+
+							System.out.println("You didn't insert Y or N.");
+							addMoreCheck = false;
+						}
+					} while (addMoreCheck == false);
+					
+				} else {
+					
+					addMore = false;
+				}
 			}
-			
+			//Checks for some user input errors
 			catch (NumberFormatException e) {
 				System.out.println("You didn't insert a number.");
 			}
@@ -105,12 +113,19 @@ public class Garage {
 
 		} while (addMore == true);
 		
-		System.out.println("The list of cars is:");
-		
-		for (int i = 0; i < cars.size(); i++) {
-			System.out.println(cars.get(i).toString());
+		//Checks if the list is empty and displays the entries
+		if (cars.isEmpty()) {
+			
+			System.out.println("There are no cars on the current list.");
+			
+		} else {
+			
+			System.out.println("The list of cars is:");
+
+			for (int i = 0; i < cars.size(); i++) {
+				System.out.println(cars.get(i).toString());
+			}
 		}
-		
 		keyboard.close();
 	}
 }
