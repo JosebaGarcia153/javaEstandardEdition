@@ -79,7 +79,7 @@ public class PetShop {
 
 		keyboard.close();
 	}
-
+/*
 
 	static int instructions() {
 
