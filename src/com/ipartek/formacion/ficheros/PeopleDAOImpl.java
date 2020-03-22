@@ -21,8 +21,8 @@ public class PeopleDAOImpl implements PeopleDAO {
 	private int wrongCounter = 0;
 	private int totalCounter = 0;
 	
-	private int DNI_Number;
-	private int arrayPosition;
+	private int DNI_Number = 0;
+	private int arrayPosition = 0;
 	
 	private int nameRepeated = 0;
 	private int companyRepeated = 0;
