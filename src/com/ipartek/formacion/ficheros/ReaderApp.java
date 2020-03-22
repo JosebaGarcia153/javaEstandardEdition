@@ -123,7 +123,13 @@ public class ReaderApp {
 				+ "\n 7)Count repeated correct entries."
 				+ "\n 8)Close the program.");
 
-		options = Integer.parseInt(keyboard.nextLine());
+		try {
+			
+			options = Integer.parseInt(keyboard.nextLine());
+			
+			} catch (Exception e) {
+				//Error message already triggers with the default switch.
+			}
 
 		return options;
 	}

@@ -97,15 +97,13 @@ public class PeopleDAOImpl implements PeopleDAO {
 	@Override
 	public void searchByName(String name) {
 		
-		for (int i = 1; i < person.size(); i++) {
+		for (int i = 0; i < person.size(); i++) {
 			
-			if (name.equals(person.get(i).getName())) {
+			if (name.equalsIgnoreCase(person.get(i).getName())) {
 
 				System.out.println(person.get(i).toString());
 				entryFound = true;
 
-			} else {
-				entryFound = false;
 			}
 		}
 
@@ -118,15 +116,12 @@ public class PeopleDAOImpl implements PeopleDAO {
 	@Override
 	public void searchByEmail(String email) {
 
-		for (int i = 1; i < person.size(); i++) {
+		for (int i = 0; i < person.size(); i++) {
 
-			if (email.equals(person.get(i).getEmail())) {
+			if (email.equalsIgnoreCase(person.get(i).getEmail())) {
 
 				System.out.println(person.get(i).toString());
 				entryFound = true;
-				
-			} else {
-				entryFound = false;
 			}
 		}
 		
@@ -139,16 +134,13 @@ public class PeopleDAOImpl implements PeopleDAO {
 	@Override
 	public void searchByPhone(String phone) {
 
-		for (int i = 1; i < person.size(); i++) {
+		for (int i = 0; i < person.size(); i++) {
 
 			if (phone.equals(person.get(i).getPhone())) {
 
 				System.out.println(person.get(i).toString());
 				entryFound = true;
-
-			} else {
-				entryFound = false;
-			}
+			} 
 		}
 
 		if (entryFound == false) {
@@ -159,9 +151,9 @@ public class PeopleDAOImpl implements PeopleDAO {
 
 	@Override
 	public void displayDNI() {
-		
 
-		for (int i = 1; i < person.size(); i++) {
+
+		for (int i = 0; i < person.size(); i++) {
 			
 			DNI_Number = Integer.parseInt(person.get(i).getPersonalNumber().substring(0,8));
 			System.out.println(DNI_Number);
