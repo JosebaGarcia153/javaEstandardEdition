@@ -33,7 +33,6 @@ public class PeopleDAOImpl implements PeopleDAO {
 	private int entryRepeated = 0;
 
 	
-	
 	public PeopleDAOImpl() {
 
 		BufferedReader reader;
@@ -74,6 +73,7 @@ public class PeopleDAOImpl implements PeopleDAO {
 		}
 	}
 
+	
 	@Override
 	public void getAll() {
 		
@@ -81,6 +81,7 @@ public class PeopleDAOImpl implements PeopleDAO {
 			System.out.println(person.get(i).toString());
 		}
 	}
+	
 	
 	@Override
 	public void countEntries() {

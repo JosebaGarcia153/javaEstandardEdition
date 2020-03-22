@@ -1,5 +1,6 @@
 package com.ipartek.formacion.ficheros;
 
+
 public class People {
 	
 	private String name;
@@ -92,6 +93,4 @@ public class People {
 		return "Name=" + name + ", Company=" + company + ", BirthDate=" + birthDate + ", Phone=" + phone
 				+ ", Email=" + email + ", PersonalNumber=" + personalNumber;
 	}
-	
-	
 }

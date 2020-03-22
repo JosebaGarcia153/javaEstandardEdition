@@ -2,13 +2,12 @@ package com.ipartek.formacion.ficheros;
 
 import java.util.Scanner;
 
+
 public class ReaderApp {
 
 	static Scanner keyboard = new Scanner(System.in);
 
 	static PeopleDAO dao = new PeopleDAOImpl();
-	
-
 	
 	static People p;
 	
@@ -128,7 +127,4 @@ public class ReaderApp {
 
 		return options;
 	}
-/*
-* contar nombres, emails o datos repetidos si los hay
-*/
 }
