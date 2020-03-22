@@ -14,18 +14,18 @@ public class PeopleDAOImpl implements PeopleDAO {
 			'F', 'P', 'D', 'X', 'B', 'N', 'J',
 			'Z', 'S', 'Q', 'V', 'H', 'L', 'C',
 			'K', 'E'};
-	
+
 	private ArrayList<People> person = new ArrayList<People>();
-	
+
 	private int correctCounter = 0;
 	private int wrongCounter = 0;
 	private int totalCounter = 0;
-	
+
 	boolean entryFound = false;
-	
+
 	private int DNI_Number = 0;
 	private int arrayPosition = 0;
-	
+
 	private int nameRepeated = 0;
 	private int companyRepeated = 0;
 	private int birthDateRepeated = 0;
@@ -34,37 +34,37 @@ public class PeopleDAOImpl implements PeopleDAO {
 	private int personalNumberRepeated = 0;
 	private int entryRepeated = 0;
 
-	
+
 	public PeopleDAOImpl() {
 
 		BufferedReader reader;
 
 		try {	
 			reader = new BufferedReader(new FileReader("src/com/ipartek/formacion/ficheros/personas.txt"));
-			
+
 			reader.readLine(); //Reads the first line
 			String line=null; //Removes the first line
-			
+
 			while ((line = reader.readLine()) != null){
 
 				String[] fields = line.split(";");
 
 				if (fields.length == 6) {
-					
+
 					String str = fields[3];
 					String strNew = str.replace("(", "");
 					String strNew2 = strNew.replace(")", "");
 					String strNew3 = strNew2.replace(" ", "");
-					
+
 					this.person.add(new People(fields[0], fields[1], fields[2], strNew3, fields[4], fields[5]));
-					
+
 					correctCounter++;
 
 				} else {
-					
+
 					wrongCounter++;
 				}
-				
+
 				totalCounter++;
 			}
 
@@ -75,30 +75,30 @@ public class PeopleDAOImpl implements PeopleDAO {
 		}
 	}
 
-	
+
 	@Override
 	public void getAll() {
-		
+
 		for (int i = 0; i < person.size(); i++) {
 			System.out.println(person.get(i).toString());
 		}
 	}
-	
-	
+
+
 	@Override
 	public void countEntries() {
-		
+
 		System.out.println("The number of correct entries is: " + correctCounter);
 		System.out.println("The number of wrong entries is: " + wrongCounter);
 		System.out.println("The total number entries is: " + totalCounter);
 	}
 
-	
+
 	@Override
 	public void searchByName(String name) {
-		
+
 		for (int i = 0; i < person.size(); i++) {
-			
+
 			if (name.equalsIgnoreCase(person.get(i).getName())) {
 
 				System.out.println(person.get(i).toString());
@@ -112,7 +112,7 @@ public class PeopleDAOImpl implements PeopleDAO {
 		}
 	}
 
-	
+
 	@Override
 	public void searchByEmail(String email) {
 
@@ -124,7 +124,7 @@ public class PeopleDAOImpl implements PeopleDAO {
 				entryFound = true;
 			}
 		}
-		
+
 		if (entryFound == false) {
 			System.out.println("There are no results for this search.");
 		}
@@ -152,13 +152,12 @@ public class PeopleDAOImpl implements PeopleDAO {
 	@Override
 	public void displayDNI() {
 
-
 		for (int i = 0; i < person.size(); i++) {
-			
+
 			DNI_Number = Integer.parseInt(person.get(i).getPersonalNumber().substring(0,8));
 			System.out.println(DNI_Number);
 			arrayPosition = DNI_Number%23;
-			
+
 			System.out.println("The DNI of " + person.get(i).getName() + " is " + DNI_Number + "-" + DNI_LETTER[arrayPosition]);
 		}
 	}
@@ -166,11 +165,11 @@ public class PeopleDAOImpl implements PeopleDAO {
 
 	@Override
 	public void countRepeats() {
-		
+
 		//Hashset doesn't allow duplicates, so it can be used to count them
-		
+
 		Set<String> hSet = new HashSet<>();
-		
+
 		for (People p : person) {
 			if (hSet.add(p.getName()) == false) {
 				nameRepeated++;
