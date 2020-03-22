@@ -38,6 +38,6 @@ public class Bird extends Animal {
 	
 	@Override
 	public String toString() {
-		return super.toString() + "Bird [claws=" + claws + ", featherColor=" + featherColor + "]";
+		return super.toString() + "claws=" + claws + ", featherColor=" + featherColor + " ";
 	}
 }

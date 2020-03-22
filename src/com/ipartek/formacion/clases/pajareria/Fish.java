@@ -38,6 +38,6 @@ public class Fish extends Animal {
 	
 	@Override
 	public String toString() {
-		return super.toString() + "Fish [fins=" + fins + ", scaleColor=" + scaleColor + "]";
+		return super.toString() + "fins=" + fins + ", scaleColor=" + scaleColor + " ";
 	}
 }

@@ -24,6 +24,6 @@ public class Mammal extends Animal {
 
 	@Override
 	public String toString() {
-		return super.toString() + "Mammal [hasFur=" + hasFur + "]";
+		return super.toString() + "hasFur=" + hasFur + " ";
 	}
 }

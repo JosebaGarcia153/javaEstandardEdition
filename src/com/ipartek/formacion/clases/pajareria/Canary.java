@@ -26,6 +26,6 @@ public class Canary extends Bird {
 	
 	@Override
 	public String toString() {
-		return super.toString() + "Canary [canSing=" + canSing + "]";
+		return super.toString() + "canSing=" + canSing;
 	}
 }

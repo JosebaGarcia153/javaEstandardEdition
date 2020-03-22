@@ -80,7 +80,7 @@ public class Animal {
 	
 	@Override
 	public String toString() {
-		return "Animal [name=" + name + ", eyeColor=" + eyeColor + ", gender=" + gender + ", size=" + size + ", weight="
-				+ weight + "]";
+		return "name=" + name + ", eyeColor=" + eyeColor + ", gender=" + gender + ", size=" + size + ", weight="
+				+ weight + " ";
 	}
 }

@@ -27,17 +27,17 @@ public class Dog extends Mammal {
 	}
 
 	
-	public String getHairColor() {
+	public String getFurColor() {
 		return furColor;
 	}
 
-	public void setHairColor(String hairColor) {
+	public void setFurColor(String hairColor) {
 		this.furColor = hairColor;
 	}
 
 	
 	@Override
 	public String toString() {
-		return super.toString() + "Dog [legs=" + legs + ", furColor=" + furColor + "]";
+		return super.toString() + "legs=" + legs + ", furColor=" + furColor;
 	}	
 }
