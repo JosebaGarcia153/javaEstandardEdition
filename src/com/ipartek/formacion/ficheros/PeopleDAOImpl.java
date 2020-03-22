@@ -21,6 +21,8 @@ public class PeopleDAOImpl implements PeopleDAO {
 	private int wrongCounter = 0;
 	private int totalCounter = 0;
 	
+	boolean entryFound = false;
+	
 	private int DNI_Number = 0;
 	private int arrayPosition = 0;
 	
@@ -98,9 +100,17 @@ public class PeopleDAOImpl implements PeopleDAO {
 		for (int i = 1; i < person.size(); i++) {
 			
 			if (name.equals(person.get(i).getName())) {
-				
+
 				System.out.println(person.get(i).toString());
+				entryFound = true;
+
+			} else {
+				entryFound = false;
 			}
+		}
+
+		if (entryFound == false) {
+			System.out.println("There are no results for this search.");
 		}
 	}
 
@@ -113,7 +123,15 @@ public class PeopleDAOImpl implements PeopleDAO {
 			if (email.equals(person.get(i).getEmail())) {
 
 				System.out.println(person.get(i).toString());
+				entryFound = true;
+				
+			} else {
+				entryFound = false;
 			}
+		}
+		
+		if (entryFound == false) {
+			System.out.println("There are no results for this search.");
 		}
 	}
 
@@ -126,7 +144,15 @@ public class PeopleDAOImpl implements PeopleDAO {
 			if (phone.equals(person.get(i).getPhone())) {
 
 				System.out.println(person.get(i).toString());
+				entryFound = true;
+
+			} else {
+				entryFound = false;
 			}
+		}
+
+		if (entryFound == false) {
+			System.out.println("There are no results for this search.");
 		}
 	}
 
