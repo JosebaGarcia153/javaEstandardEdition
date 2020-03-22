@@ -124,12 +124,12 @@ public class ReaderApp {
 				+ "\n 8)Close the program.");
 
 		try {
-			
+
 			options = Integer.parseInt(keyboard.nextLine());
-			
-			} catch (Exception e) {
-				//Error message already triggers with the default switch.
-			}
+
+		} catch (Exception e) {
+			//Error message already triggers with the default switch.
+		}
 
 		return options;
 	}
