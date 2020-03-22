@@ -121,7 +121,7 @@ public class ReaderApp {
 				+ "\n 4)Search for correct entries by name."
 				+ "\n 5)Search for correct entries by email."
 				+ "\n 6)Show DNIs of the correct entries."
-				+ "\n 7)Count repeated correct entries." //TODO
+				+ "\n 7)Count repeated correct entries."
 				+ "\n 8)Close the program.");
 
 		options = Integer.parseInt(keyboard.nextLine());
