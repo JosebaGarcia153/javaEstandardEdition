@@ -1,19 +1,20 @@
 package com.ipartek.formacion.ficheros;
 
+import java.util.ArrayList;
 
 public interface PeopleDAO {
 	
-	void getAll();
+	ArrayList<People> getAll();
 	
-	void countEntries();
+	int[] countEntries();
 
-	void searchByName(String name);
+	ArrayList<People> searchByName(String name) throws Exception;
 
-	void searchByEmail(String email);
+	People searchByEmail(String email) throws Exception;
 	
-	void searchByPhone(String phone);
+	People searchByPhone(String phone) throws Exception;
 	
-	void displayDNI();
+	ArrayList<Character> displayDNI();
 	
-	void countRepeats();
+	int[] countRepeats();
 }

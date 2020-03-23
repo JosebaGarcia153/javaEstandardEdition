@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class PeopleDAOImpl implements PeopleDAO {
 
 	private final char[] DNI_LETTER = {'T', 'R', 'W', 'A','G', 'M', 'Y',
@@ -77,97 +76,102 @@ public class PeopleDAOImpl implements PeopleDAO {
 
 
 	@Override
-	public void getAll() {
+	public ArrayList<People> getAll() {
 
-		for (int i = 0; i < person.size(); i++) {
-			System.out.println(person.get(i).toString());
-		}
+		return person;
 	}
 
 
 	@Override
-	public void countEntries() {
+	public int[] countEntries() {
 
-		System.out.println("The number of correct entries is: " + correctCounter);
-		System.out.println("The number of wrong entries is: " + wrongCounter);
-		System.out.println("The total number entries is: " + totalCounter);
+		int[] count = new int[3];
+		count[0] = correctCounter;
+		count[1] = wrongCounter;
+		count[2] = totalCounter;
+
+		return count;	
 	}
 
 
 	@Override
-	public void searchByName(String name) {
+	public ArrayList<People> searchByName(String name) throws Exception {
+
+		ArrayList<People> peopleByName = new ArrayList<People>();
 
 		for (int i = 0; i < person.size(); i++) {
 
 			if (name.equalsIgnoreCase(person.get(i).getName())) {
 
-				System.out.println(person.get(i).toString());
-				entryFound = true;
-
+				peopleByName.add(new People(person.get(i).getName(), person.get(i).getCompany(),
+						person.get(i).getBirthDate(),person.get(i).getPhone(),
+						person.get(i).getEmail(), person.get(i).getPersonalNumber()));
 			}
 		}
 
-		if (entryFound == false) {
-			System.out.println("There are no results for this search.");
+		if (peopleByName.size() == 0) {
+
+			throw new Exception("The name was not found.");
+
+		} else {
+
+			return peopleByName;
 		}
+
 	}
 
 
 	@Override
-	public void searchByEmail(String email) {
+	public People searchByEmail(String email) throws Exception {
 
 		for (int i = 0; i < person.size(); i++) {
 
 			if (email.equalsIgnoreCase(person.get(i).getEmail())) {
 
-				System.out.println(person.get(i).toString());
-				entryFound = true;
-			}
+				return person.get(i);
+			} 
 		}
-
-		if (entryFound == false) {
-			System.out.println("There are no results for this search.");
-		}
+		throw new Exception("The email was not found.");
 	}
 
 
 	@Override
-	public void searchByPhone(String phone) {
+	public People searchByPhone(String phone) throws Exception {
 
 		for (int i = 0; i < person.size(); i++) {
 
 			if (phone.equals(person.get(i).getPhone())) {
 
-				System.out.println(person.get(i).toString());
-				entryFound = true;
+				return person.get(i);
 			} 
 		}
-
-		if (entryFound == false) {
-			System.out.println("There are no results for this search.");
-		}
+		throw new Exception("The phone number was not found.");
 	}
 
 
 	@Override
-	public void displayDNI() {
+	public ArrayList<Character> displayDNI() {
+
+		ArrayList<Character> DNI_List = new ArrayList<Character>();
 
 		for (int i = 0; i < person.size(); i++) {
 
 			DNI_Number = Integer.parseInt(person.get(i).getPersonalNumber().substring(0,8));
-			System.out.println(DNI_Number);
 			arrayPosition = DNI_Number%23;
 
-			System.out.println("The DNI of " + person.get(i).getName() + " is " + DNI_Number + "-" + DNI_LETTER[arrayPosition]);
+			DNI_List.add(DNI_LETTER[arrayPosition]);
 		}
+
+		return DNI_List;	
 	}
 
 
 	@Override
-	public void countRepeats() {
+	public int[] countRepeats() {
+
+		int[] count = new int[7];
 
 		//Hashset doesn't allow duplicates, so it can be used to count them
-
 		Set<String> hSet = new HashSet<>();
 
 		for (People p : person) {
@@ -194,12 +198,14 @@ public class PeopleDAOImpl implements PeopleDAO {
 			}		
 		}
 
-		System.out.println("The number of times a name is repeated is: " + nameRepeated);
-		System.out.println("The number of times a company is repeated is: " + companyRepeated);
-		System.out.println("The number of times a birth date is repeated is: " + birthDateRepeated);
-		System.out.println("The number of times a phone number is repeated is: " + phoneRepeated);
-		System.out.println("The number of times an email is repeated is: " + emailRepeated);
-		System.out.println("The number of times a personal number is repeated is: " + personalNumberRepeated);
-		System.out.println("The number of times a full entry is repeated is: " + entryRepeated);
+		count[0] = nameRepeated;
+		count[1] = companyRepeated;
+		count[2] = birthDateRepeated;
+		count[3] = phoneRepeated;
+		count[4] = emailRepeated;
+		count[5] = personalNumberRepeated;
+		count[6] = entryRepeated;
+
+		return count;
 	}
 }
