@@ -106,8 +106,8 @@ public class PeopleDAOImpl implements PeopleDAO {
 			if (name.equalsIgnoreCase(person.get(i).getName())) {
 
 				peopleByName.add(new People(person.get(i).getName(), person.get(i).getCompany(),
-											person.get(i).getBirthDate(),person.get(i).getPhone(),
-											person.get(i).getEmail(), person.get(i).getPersonalNumber()));
+						person.get(i).getBirthDate(),person.get(i).getPhone(),
+						person.get(i).getEmail(), person.get(i).getPersonalNumber()));
 			}
 		}
 
