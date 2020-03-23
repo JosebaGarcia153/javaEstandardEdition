@@ -14,17 +14,19 @@ public class PeopleDAOImpl implements PeopleDAO {
 			'Z', 'S', 'Q', 'V', 'H', 'L', 'C',
 			'K', 'E'};
 
-	private ArrayList<People> person = new ArrayList<People>();
-
+	private ArrayList<People> person = new ArrayList<People>();	
+	
+	private int[] countEntries;
 	private int correctCounter = 0;
 	private int wrongCounter = 0;
 	private int totalCounter = 0;
-
-	boolean entryFound = false;
+	
 
 	private int DNI_Number = 0;
 	private int arrayPosition = 0;
-
+	
+	private int[] countRepeats;
+	private Set<String> hSet;
 	private int nameRepeated = 0;
 	private int companyRepeated = 0;
 	private int birthDateRepeated = 0;
@@ -85,27 +87,27 @@ public class PeopleDAOImpl implements PeopleDAO {
 	@Override
 	public int[] countEntries() {
 
-		int[] count = new int[3];
-		count[0] = correctCounter;
-		count[1] = wrongCounter;
-		count[2] = totalCounter;
+		countEntries = new int[3];
+		countEntries[0] = correctCounter;
+		countEntries[1] = wrongCounter;
+		countEntries[2] = totalCounter;
 
-		return count;	
+		return countEntries;	
 	}
 
 
 	@Override
 	public ArrayList<People> searchByName(String name) throws Exception {
-
+		
 		ArrayList<People> peopleByName = new ArrayList<People>();
-
+		
 		for (int i = 0; i < person.size(); i++) {
 
 			if (name.equalsIgnoreCase(person.get(i).getName())) {
 
 				peopleByName.add(new People(person.get(i).getName(), person.get(i).getCompany(),
-						person.get(i).getBirthDate(),person.get(i).getPhone(),
-						person.get(i).getEmail(), person.get(i).getPersonalNumber()));
+											person.get(i).getBirthDate(),person.get(i).getPhone(),
+											person.get(i).getEmail(), person.get(i).getPersonalNumber()));
 			}
 		}
 
@@ -151,9 +153,9 @@ public class PeopleDAOImpl implements PeopleDAO {
 
 	@Override
 	public ArrayList<Character> displayDNI() {
-
+		
 		ArrayList<Character> DNI_List = new ArrayList<Character>();
-
+		
 		for (int i = 0; i < person.size(); i++) {
 
 			DNI_Number = Integer.parseInt(person.get(i).getPersonalNumber().substring(0,8));
@@ -169,10 +171,10 @@ public class PeopleDAOImpl implements PeopleDAO {
 	@Override
 	public int[] countRepeats() {
 
-		int[] count = new int[7];
+		countRepeats = new int[7];
 
 		//Hashset doesn't allow duplicates, so it can be used to count them
-		Set<String> hSet = new HashSet<>();
+		hSet = new HashSet<>();
 
 		for (People p : person) {
 			if (hSet.add(p.getName()) == false) {
@@ -198,14 +200,14 @@ public class PeopleDAOImpl implements PeopleDAO {
 			}		
 		}
 
-		count[0] = nameRepeated;
-		count[1] = companyRepeated;
-		count[2] = birthDateRepeated;
-		count[3] = phoneRepeated;
-		count[4] = emailRepeated;
-		count[5] = personalNumberRepeated;
-		count[6] = entryRepeated;
+		countRepeats[0] = nameRepeated;
+		countRepeats[1] = companyRepeated;
+		countRepeats[2] = birthDateRepeated;
+		countRepeats[3] = phoneRepeated;
+		countRepeats[4] = emailRepeated;
+		countRepeats[5] = personalNumberRepeated;
+		countRepeats[6] = entryRepeated;
 
-		return count;
+		return countRepeats;
 	}
 }
