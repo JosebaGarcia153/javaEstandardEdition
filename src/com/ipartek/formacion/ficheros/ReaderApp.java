@@ -38,7 +38,6 @@ public class ReaderApp {
 						System.out.println(dao.getAll().get(i));
 					}
 
-
 					break;
 
 
@@ -94,7 +93,9 @@ public class ReaderApp {
 
 					for (int i = 0; i < dao.displayDNI().size(); i++) {
 
-						System.out.println("The DNI of " + dao.getAll().get(i).getName() + " is " + dao.getAll().get(i).getPersonalNumber().substring(0,8) + "-" + dao.displayDNI().get(i));
+						System.out.println("The DNI of " + dao.getAll().get(i).getName() + " is "
+								+ dao.getAll().get(i).getPersonalNumber().substring(0,8)
+								+ "-" + dao.displayDNI().get(i));
 					}
 
 					break;
