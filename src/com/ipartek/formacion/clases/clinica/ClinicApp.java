@@ -136,9 +136,7 @@ public class ClinicApp {
 
 					System.out.println("Write the ID of the animal you want to find:");
 					int id = Integer.parseInt(keyboard.nextLine());
-
-					System.out.println("Pet Name=" + dao.searchByID(id).getName() + ", Species=" + dao.searchByID(id).getSpecies()
-							+ ", Race=" + dao.searchByID(id).getRace() + ", Age=" + dao.searchByID(id).getAge());
+					System.out.println(dao.searchByID(id).toString1());
 
 					break;
 

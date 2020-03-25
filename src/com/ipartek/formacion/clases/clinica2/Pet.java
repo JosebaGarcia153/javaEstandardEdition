@@ -1,4 +1,4 @@
-package com.ipartek.formacion.clases.clinica;
+package com.ipartek.formacion.clases.clinica2;
 
 
 public class Pet {
@@ -7,25 +7,36 @@ public class Pet {
 	private String species;
 	private String race;
 	private int age;
-	
+	private Revision revision;
 	
 	public Pet() {
 		super();
+		this.revision = null;
 		this.name = "pet";
 		this.species = "unknown";
 		this.race = "unknown";
 		this.age = 0;
 	}
 	
-	public Pet(String name, String species, String race, int age) {
+	public Pet(Revision revision, String name, String species, String race, int age) {
 		super();
+		this.revision = revision;
 		this.name = name;
 		this.species = species;
 		this.race = race;
 		this.age = age;
 	}
 
+	
+	public Revision getRevision() {
+		return revision;
+	}
 
+	public void setRevision(Revision revision) {
+		this.revision = revision;
+	}
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -62,8 +73,8 @@ public class Pet {
 	}
 
 	
-
-	public String toString1() {
+	@Override
+	public String toString() {
 		return "Pet Name=" + name + ", Species=" + species + ", Race=" + race + ", Age=" + age;
 	}
 }
