@@ -74,7 +74,7 @@ public class Revision extends Pet {
 
 	@Override
 	public String toString() {
-		return super.toString() + ", Revision Date=" + date + ", ID=" + id + ", Reason=" + reason + ", Diagnosis=" + diagnosis
+		return "Revision Date=" + date + ", ID=" + id + ", Reason=" + reason + ", Diagnosis=" + diagnosis
 				+ ", Treatment=" + treatment;
 	}
 }

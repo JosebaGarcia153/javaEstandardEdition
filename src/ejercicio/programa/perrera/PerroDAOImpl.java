@@ -89,16 +89,12 @@ public class PerroDAOImpl implements PerroDAO {
 
 	@Override
 	public Perro getById(int id) throws Exception {
-		
-		int dogId;
-			
+					
 		for (int i = 0; i < perros.size(); i++) {
 			
 			if (perros.get(i).getId() == id) {
 				
-				dogId = i;
-				
-				return perros.get(dogId);
+				return perros.get(i);
 			}
 		}
 		
@@ -122,7 +118,7 @@ public class PerroDAOImpl implements PerroDAO {
 		}
 		
 		do {
-			System.out.println("Are you sure you want to dele this entry? Y/N");
+			System.out.println("Are you sure you want to delete this entry? Y/N");
 			confirmation = keyboard.nextLine();
 			
 			if ("y".equalsIgnoreCase(confirmation)) {
