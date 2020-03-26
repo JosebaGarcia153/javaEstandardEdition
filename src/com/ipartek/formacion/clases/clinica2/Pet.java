@@ -1,5 +1,6 @@
 package com.ipartek.formacion.clases.clinica2;
 
+import java.util.ArrayList;
 
 public class Pet {
 	
@@ -7,36 +8,34 @@ public class Pet {
 	private String species;
 	private String race;
 	private int age;
-	private Revision revision;
+	private ArrayList<Revision> rev;
 	
 	public Pet() {
 		super();
-		this.revision = null;
+		this.rev = null;
 		this.name = "pet";
 		this.species = "unknown";
 		this.race = "unknown";
 		this.age = 0;
 	}
 	
-	public Pet(Revision revision, String name, String species, String race, int age) {
+	public Pet(ArrayList<Revision> rev, String name, String species, String race, int age) {
 		super();
-		this.revision = revision;
+		this.rev = rev;
 		this.name = name;
 		this.species = species;
 		this.race = race;
 		this.age = age;
 	}
 
-	
-	public Revision getRevision() {
-		return revision;
+	public ArrayList<Revision> getRev() {
+		return rev;
 	}
 
-	public void setRevision(Revision revision) {
-		this.revision = revision;
+	public void setRev(ArrayList<Revision> revision) {
+		this.rev = revision;
 	}
-	
-	
+
 	public String getName() {
 		return name;
 	}

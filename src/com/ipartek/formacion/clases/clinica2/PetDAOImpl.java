@@ -5,55 +5,49 @@ import java.util.Scanner;
 
 
 public class PetDAOImpl implements PetDAO {
-	
+
 	Scanner keyboard = new Scanner(System.in);
-	
+
 	private ArrayList<Pet> animal;
-	
-	private int newId = 0;
 
 
 	public PetDAOImpl() {
 
 		this.animal = new ArrayList<Pet>();
-		
 	}
 
 
 	@Override
 	public Pet searchByID(int id) throws Exception {
 
+
 		for (Pet pet: animal) {
+			for (int i = 0; i < pet.getRev().size();i++) {
+				if(id == pet.getRev().get(i).getId()) {
 
-			if (id == pet.getRevision().getId()) {
-				return pet;
-			}	
-
+					return pet;											
+				}	
+			}
 		}
 		throw new Exception("The ID was not found.");
 	}
 
-	
-	@Override
-	public int addPet(Revision revision, String name, String species, String race, int age) {
-		
-		newId++;
-		revision.setId(newId);
-		
-		animal.add(new Pet(revision, name, species, race, age));
-			
-		return newId;
-	}
-	
-	
-	@Override
-	public Revision getHistory(String name) throws Exception {
 
-		for (Pet pet: animal) {
-			
-				if (name.equalsIgnoreCase(pet.getName())) {
-					return pet.getRevision();
-				}			
+	@Override
+	public void addPet(ArrayList<Revision> rev, Pet pet) {
+
+		animal.add(new Pet(rev, pet.getName(), pet.getSpecies(), pet.getRace(), pet.getAge()));
+
+	}
+
+
+	@Override
+	public ArrayList<Revision> getHistory(String name) throws Exception {
+
+		for (int i = 0; i < animal.size(); i++) {
+			if (name.equalsIgnoreCase(animal.get(i).getName())) {
+				return animal.get(i).getRev();
+			}
 		}
 		throw new Exception("The name was not found.");
 	}

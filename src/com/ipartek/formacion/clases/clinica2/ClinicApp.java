@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -13,8 +14,11 @@ public class ClinicApp {
 
 	static PetDAO dao = new PetDAOImpl();
 
+	static ArrayList<Revision> rev;
 	static Pet pet;
 	static Revision revision;
+	
+	static int newId = 0;
 	
 	static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT);
 	static LocalDate date;
@@ -34,8 +38,7 @@ public class ClinicApp {
 		int options = 0;
 
 		do {
-			revision = new Revision();
-			pet = new Pet(revision, null, null, null, 0);
+			
 			try {
 
 				options = instructions();
@@ -43,7 +46,12 @@ public class ClinicApp {
 				switch (options) {
 
 				case 1:
-
+					
+					rev = new ArrayList<Revision>();
+					
+					revision = new Revision();
+					pet = new Pet();
+					
 					try {
 						System.out.println("Insert the name of the animal:");
 						pet.setName(keyboard.nextLine());
@@ -92,15 +100,19 @@ public class ClinicApp {
 
 						System.out.println("Insert the treatment:");
 						revision.setTreatment(keyboard.nextLine());
-
+						
+						newId++;
+						revision.setId(newId);
 
 						do {
 							System.out.println("Are you sure you want to add this entry? Y/N");
 							confirm = keyboard.nextLine();
 
 							if ("y".equalsIgnoreCase(confirm)) {
-
-								System.out.println("Entry added. The ID of the visit is: " + dao.addPet(revision, pet.getName(), pet.getSpecies(), pet.getRace(), pet.getAge()));
+								rev.add(revision);
+								
+								dao.addPet(rev, pet);
+								System.out.println("Entry added.");
 								check = true;
 
 							} else if ("n".equalsIgnoreCase(confirm)) {
@@ -136,8 +148,10 @@ public class ClinicApp {
 
 					System.out.println("Type the animal's name to find its medical record:");
 					String name = (keyboard.nextLine());
-
-					System.out.println(dao.getHistory(name));
+					for (int i = 0; i < dao.getHistory(name).size(); i++) {
+						System.out.println(dao.getHistory(name).toString());
+					}
+					
 
 					break;
 
