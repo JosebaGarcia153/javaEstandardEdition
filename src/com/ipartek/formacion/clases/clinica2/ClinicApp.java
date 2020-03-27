@@ -12,7 +12,7 @@ public class ClinicApp {
 
 	static Scanner keyboard = new Scanner(System.in);
 
-	static PetDAO dao = new PetDAOImpl();
+	static PetDAOImpl petDAOImpl;
 
 	static ArrayList<Revision> rev;
 	static Pet pet;
@@ -36,7 +36,9 @@ public class ClinicApp {
 	static void drawMenu() {
 
 		int options = 0;
-
+		
+		petDAOImpl.getPetDAOImpl();
+		
 		do {
 			
 			try {
@@ -111,7 +113,7 @@ public class ClinicApp {
 							if ("y".equalsIgnoreCase(confirm)) {
 								rev.add(revision);
 								
-								dao.addPet(rev, pet);
+								petDAOImpl.addPet(rev, pet);
 								System.out.println("Entry added.");
 								check = true;
 
@@ -139,7 +141,7 @@ public class ClinicApp {
 
 					System.out.println("Write the ID of the animal you want to find:");
 					int id = Integer.parseInt(keyboard.nextLine());
-					System.out.println(dao.searchByID(id).toString());
+					System.out.println(petDAOImpl.searchByID(id).toString());
 
 					break;
 
@@ -148,8 +150,8 @@ public class ClinicApp {
 
 					System.out.println("Type the animal's name to find its medical record:");
 					String name = (keyboard.nextLine());
-					for (int i = 0; i < dao.getHistory(name).size(); i++) {
-						System.out.println(dao.getHistory(name).toString());
+					for (int i = 0; i < petDAOImpl.getHistory(name).size(); i++) {
+						System.out.println(petDAOImpl.getHistory(name).toString());
 					}
 					
 

@@ -9,13 +9,19 @@ public class PetDAOImpl implements PetDAO {
 	Scanner keyboard = new Scanner(System.in);
 
 	private ArrayList<Pet> animal;
+	private PetDAOImpl instance;
 
-
-	public PetDAOImpl() {
+	private PetDAOImpl() {
 
 		this.animal = new ArrayList<Pet>();
 	}
 
+	public PetDAOImpl getPetDAOImpl() {
+		if (instance == null) {
+			instance = new PetDAOImpl(); 
+		}
+		return instance; 
+	}
 
 	@Override
 	public Pet searchByID(int id) throws Exception {
