@@ -30,7 +30,7 @@ public class Menu {
 			
 				case 2:	
 					adder.add(country);
-				break;
+					break;
 				
 				case 3:
 					remover.delete(country);

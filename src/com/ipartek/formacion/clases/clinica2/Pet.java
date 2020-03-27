@@ -8,32 +8,32 @@ public class Pet {
 	private String species;
 	private String race;
 	private int age;
-	private ArrayList<Revision> rev;
+	private ArrayList<Revision> revision;
 	
 	public Pet() {
 		super();
-		this.rev = null;
+		this.revision = null;
 		this.name = "pet";
 		this.species = "unknown";
 		this.race = "unknown";
 		this.age = 0;
 	}
 	
-	public Pet(ArrayList<Revision> rev, String name, String species, String race, int age) {
+	public Pet(ArrayList<Revision> revision, String name, String species, String race, int age) {
 		super();
-		this.rev = rev;
+		this.revision = revision;
 		this.name = name;
 		this.species = species;
 		this.race = race;
 		this.age = age;
 	}
 
-	public ArrayList<Revision> getRev() {
-		return rev;
+	public ArrayList<Revision> getRevision() {
+		return revision;
 	}
 
-	public void setRev(ArrayList<Revision> revision) {
-		this.rev = revision;
+	public void setRevision(ArrayList<Revision> revision) {
+		this.revision = revision;
 	}
 
 	public String getName() {
