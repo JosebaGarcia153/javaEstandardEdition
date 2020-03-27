@@ -9,7 +9,6 @@ public class Revision {
 	private String treatment;
 	
 	
-	
 	public Revision() {
 		super();
 		this.date = "00/00/0000";

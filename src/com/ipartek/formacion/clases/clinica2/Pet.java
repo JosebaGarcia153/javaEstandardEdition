@@ -10,6 +10,7 @@ public class Pet {
 	private int age;
 	private ArrayList<Revision> revision;
 	
+	
 	public Pet() {
 		super();
 		this.revision = null;
@@ -28,6 +29,7 @@ public class Pet {
 		this.age = age;
 	}
 
+	
 	public ArrayList<Revision> getRevision() {
 		return revision;
 	}
@@ -36,6 +38,7 @@ public class Pet {
 		this.revision = revision;
 	}
 
+	
 	public String getName() {
 		return name;
 	}

@@ -17,6 +17,7 @@ public class PetDAOImpl implements PetDAO {
 		this.animal = new ArrayList<Pet>();
 	}
 
+	
 	public static PetDAOImpl getPetDAOImpl() {
 		
 		if (instance == null) {
@@ -26,6 +27,7 @@ public class PetDAOImpl implements PetDAO {
 		return instance; 
 	}
 
+	
 	@Override
 	public Pet searchById(int id) throws Exception {
 
@@ -68,7 +70,6 @@ public class PetDAOImpl implements PetDAO {
 	
 	@Override
 	public void addHistory(Revision revision, Pet pet) {
-
 				
 				pet.getRevision().add(revision);
 

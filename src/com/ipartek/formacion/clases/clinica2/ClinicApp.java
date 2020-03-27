@@ -39,7 +39,7 @@ public class ClinicApp {
 	}
 
 
-	static void drawMenu() {
+	private static void drawMenu() {
 
 		int options = 0;
 		
@@ -96,7 +96,7 @@ public class ClinicApp {
 	}
 	
 	
-	static void addPet() {
+	private static void addPet() {
 		
 		revision = new ArrayList<Revision>();
 		
@@ -138,6 +138,7 @@ public class ClinicApp {
 
 				catch (DateTimeParseException e) {
 					System.out.println("Invalid date format. DD/MM/YYYY");
+					check = false;
 				}
 
 			} while (check == false);
@@ -188,7 +189,7 @@ public class ClinicApp {
 	}
 	
 	
-	static void findById() throws Exception {
+	private static void findById() throws Exception {
 
 		try {
 			
@@ -204,7 +205,7 @@ public class ClinicApp {
 	}
 
 	
-	static void findHistory() throws Exception {
+	private static void findHistory() throws Exception {
 		
 		System.out.println("Type the animal's name to find its medical records:");
 		name = (keyboard.nextLine());
@@ -216,7 +217,7 @@ public class ClinicApp {
 	}
 	
 	
-	static void addHistory() throws Exception {
+	private static void addHistory() throws Exception {
 
 		medicalHistory = new Revision();
 
@@ -248,6 +249,7 @@ public class ClinicApp {
 
 				catch (DateTimeParseException e) {
 					System.out.println("Invalid date format. DD/MM/YYYY");
+					check = false;
 				}
 
 			} while (check == false);
@@ -295,14 +297,14 @@ public class ClinicApp {
 	}
 
 
-	static int instructions() {
+	private static int instructions() {
 
 		int options = 0;
 
 		System.out.println("Select one of the following actions:"
 				+ "\n 1)Register new pet."
 				+ "\n 2)Search pet by revision ID"
-				+ "\n 3)Read pet's medical record."
+				+ "\n 3)Read pet's medical records."
 				+ "\n 4)Add new revision to a pet."
 				+ "\n 5)Close the program.");
 
