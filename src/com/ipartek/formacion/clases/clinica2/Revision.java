@@ -3,7 +3,7 @@ package com.ipartek.formacion.clases.clinica2;
 public class Revision {
 	
 	private String date;
-	private int id;
+	private int doctorId;
 	private String reason;
 	private String diagnosis;
 	private String treatment;
@@ -12,17 +12,17 @@ public class Revision {
 	public Revision() {
 		super();
 		this.date = "00/00/0000";
-		this.id = 0;
+		this.doctorId = 0;
 		this.reason = "unknown";
 		this.diagnosis = "unknown";
 		this.treatment = "unknown";
 	}
 
 	
-	public Revision(String date, int id, String reason, String diagnosis, String treatment) {
+	public Revision(String date, int doctorId, String reason, String diagnosis, String treatment) {
 		super();
 		this.date = date;
-		this.id = id;
+		this.doctorId = doctorId;
 		this.reason = reason;
 		this.diagnosis = diagnosis;
 		this.treatment = treatment;
@@ -37,12 +37,12 @@ public class Revision {
 	}
 
 	
-	public int getId() {
-		return id;
+	public int getDoctorId() {
+		return doctorId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setDoctorId(int id) {
+		this.doctorId = id;
 	}
 
 	
@@ -74,7 +74,7 @@ public class Revision {
 
 	@Override
 	public String toString() {
-		return "Revision Date=" + date + ", ID=" + id + ", Reason=" + reason + ", Diagnosis=" + diagnosis
+		return "Revision Date=" + date + ", Doctor ID=" + doctorId + ", Reason=" + reason + ", Diagnosis=" + diagnosis
 				+ ", Treatment=" + treatment;
 	}
 }

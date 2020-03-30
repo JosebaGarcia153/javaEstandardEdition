@@ -73,8 +73,16 @@ public class ClinicApp {
 					addHistory();
 					break;
 					
-					
 				case 5:
+					
+					updatePet();
+					break;
+				
+				case 6:
+					
+					deletePet();
+					break;
+				case 7:
 
 					System.out.println("The program has been closed.");
 					break;
@@ -90,13 +98,13 @@ public class ClinicApp {
 				System.out.println(e.getMessage());
 			}
 
-		} while (options != 5);
+		} while (options != 7);
 
 		keyboard.close();
 	}
 	
 	
-	private static void addPet() {
+	private static void addPet() throws Exception {
 		
 		revision = new ArrayList<Revision>();
 		
@@ -143,7 +151,10 @@ public class ClinicApp {
 
 			} while (check == false);
 
-
+			
+			System.out.println("Insert the ID of the doctor who treated it:");
+			medicalHistory.setDoctorId(Integer.parseInt(keyboard.nextLine()));
+			
 			System.out.println("Insert the reason for the visit to the clinic:");
 			medicalHistory.setReason(keyboard.nextLine());
 
@@ -153,8 +164,6 @@ public class ClinicApp {
 			System.out.println("Insert the treatment:");
 			medicalHistory.setTreatment(keyboard.nextLine());
 			
-			newId++;
-			medicalHistory.setId(newId);
 
 			do {
 				System.out.println("Are you sure you want to add this entry? Y/N");
@@ -164,9 +173,7 @@ public class ClinicApp {
 					
 					revision.add(medicalHistory);
 					
-					petDAO.addPet(revision, pet);
-					
-					System.out.println("Entry added.");
+					System.out.println(petDAO.addPet(revision, pet).toString() + " has been created.");
 					check = true;
 
 				} else if ("n".equalsIgnoreCase(confirm)) {
@@ -265,7 +272,7 @@ public class ClinicApp {
 			medicalHistory.setTreatment(keyboard.nextLine());
 
 			newId++;
-			medicalHistory.setId(newId);
+			medicalHistory.setDoctorId(newId);
 
 			do {
 				System.out.println("Are you sure you want to add this entry? Y/N");
@@ -273,9 +280,7 @@ public class ClinicApp {
 
 				if ("y".equalsIgnoreCase(confirm)) {
 
-					petDAO.addHistory(medicalHistory, pet);
-
-					System.out.println("Entry added.");
+					System.out.println("The revision " + petDAO.addHistory(medicalHistory, pet).toString() + " has been added.");
 					check = true;
 
 				} else if ("n".equalsIgnoreCase(confirm)) {
@@ -295,6 +300,69 @@ public class ClinicApp {
 			System.out.println("Invalid entry. Must type a number.");
 		}
 	}
+	
+	
+	private static void updatePet() throws Exception {
+		
+		System.out.println("What is the ID of the pet you want to edit?");
+		int petId = Integer.parseInt(keyboard.nextLine());
+		
+		petDAO.searchById(petId);
+		
+		try {
+			System.out.println("Insert the name of the animal:");
+			pet.setName(keyboard.nextLine());
+
+			System.out.println("Insert the species of the animal:");
+			pet.setSpecies(keyboard.nextLine());
+
+			System.out.println("Insert the race of the animal:");
+			pet.setRace(keyboard.nextLine());
+
+			System.out.println("Insert the age of the animal:");
+			pet.setAge(Integer.parseInt(keyboard.nextLine()));
+			
+
+			do {
+				System.out.println("Are you sure you want to edit this entry? Y/N");
+				confirm = keyboard.nextLine();
+
+				if ("y".equalsIgnoreCase(confirm)) {
+					
+					System.out.println(petDAO.updatePet(pet, petId).toString() + " has been updated.");
+					check = true;
+
+				} else if ("n".equalsIgnoreCase(confirm)) {
+
+					System.out.println("The entry has been cancelled.");
+					check = true;
+
+				} else {
+
+					System.out.println("Invalid input.");	
+					check = false;
+				}
+			} while (check == false);
+
+			
+		} catch (NumberFormatException e) {
+
+			System.out.println("Invalid entry. Must type a number.");
+		}
+	}
+
+
+	private static void deletePet() throws Exception {
+		
+		System.out.println("What is the ID of the pet you want to delete?");
+		int petId = Integer.parseInt(keyboard.nextLine());
+		
+		petDAO.searchById(petId);
+		
+		petDAO.deletePet(pet, petId);
+		
+		System.out.println("Entry deleted.");					
+	}
 
 
 	private static int instructions() {
@@ -306,7 +374,9 @@ public class ClinicApp {
 				+ "\n 2)Search pet by revision ID"
 				+ "\n 3)Read pet's medical records."
 				+ "\n 4)Add new revision to a pet."
-				+ "\n 5)Close the program.");
+				+ "\n 5)Update Pet."
+				+ "\n 6)Delete Pet."	
+				+ "\n 7)Close the program.");
 
 		try {
 

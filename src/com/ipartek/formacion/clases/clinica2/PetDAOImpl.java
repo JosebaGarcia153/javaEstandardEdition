@@ -1,20 +1,21 @@
 package com.ipartek.formacion.clases.clinica2;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 
 public class PetDAOImpl implements PetDAO {
 
-	Scanner keyboard = new Scanner(System.in);
-
-	private ArrayList<Pet> animal;
+	private ArrayList<Pet> animals;
 	private static PetDAOImpl instance;
+	
+	private static int IdCounter;
+	private boolean check = false;
 	
 	
 	private PetDAOImpl() {
 
-		this.animal = new ArrayList<Pet>();
+		this.animals = new ArrayList<Pet>();
 	}
 
 	
@@ -23,6 +24,7 @@ public class PetDAOImpl implements PetDAO {
 		if (instance == null) {
 			
 			instance = new PetDAOImpl(); 
+			IdCounter = 1;
 		}
 		return instance; 
 	}
@@ -32,11 +34,11 @@ public class PetDAOImpl implements PetDAO {
 	public Pet searchById(int id) throws Exception {
 
 
-		for (Pet pet: animal) {
+		for (Pet pet: animals) {
 			
 			for (int i = 0; i < pet.getRevision().size();i++) {
 				
-				if(id == pet.getRevision().get(i).getId()) {
+				if(id == pet.getId()) {
 
 					return pet;											
 				}	
@@ -47,21 +49,39 @@ public class PetDAOImpl implements PetDAO {
 
 	
 	@Override
-	public void addPet(ArrayList<Revision> revision, Pet pet) {
+	public Pet addPet(ArrayList<Revision> revision, Pet pet) throws Exception {
 
-		animal.add(new Pet(revision, pet.getName(), pet.getSpecies(), pet.getRace(), pet.getAge()));
+		check = false;
 
+		for (int i = 0; i < animals.size(); i++) {
+			pet.setId(animals.get(i).getId());
+			if (pet.toString().equals(animals.get(i).toString())) {
+				check = true;
+				System.out.println(check);	
+			}
+		}
+
+		if (check == false) {
+			pet.setId(IdCounter);
+
+			animals.add(new Pet(revision, pet.getName(), pet.getSpecies(), pet.getRace(), pet.getAge(), pet.getId()));
+			IdCounter++;
+
+			return animals.get(animals.size()-1);
+		}
+			
+			throw new Exception("The animal already exists.");	
 	}
 
 
 	@Override
 	public ArrayList<Revision> findHistory(String name) throws Exception {
 
-		for (int i = 0; i < animal.size(); i++) {
+		for (int i = 0; i < animals.size(); i++) {
 			
-			if (name.equalsIgnoreCase(animal.get(i).getName())) {
+			if (name.equalsIgnoreCase(animals.get(i).getName())) {
 				
-				return animal.get(i).getRevision();
+				return animals.get(i).getRevision();
 			}
 		}
 		throw new Exception("The name was not found.");
@@ -69,9 +89,35 @@ public class PetDAOImpl implements PetDAO {
 	
 	
 	@Override
-	public void addHistory(Revision revision, Pet pet) {
+	public Revision addHistory(Revision revision, Pet pet) {
 				
 				pet.getRevision().add(revision);
+				
+				return revision;
 
+	}
+	
+	
+	@Override
+	public Pet updatePet(Pet pet, int petId) {
+		
+			pet.setId(petId);
+				
+			animals.set(petId, pet);
+			
+			return pet;	
+	}
+	
+	
+	@Override
+	public void deletePet(Pet pet, int petId) {
+		
+		for (int i = 0; i < animals.size(); i++) {
+			
+			if (animals.get(i).getId() == petId) {
+							
+				animals.remove(i);			
+			}	
+		}
 	}
 }

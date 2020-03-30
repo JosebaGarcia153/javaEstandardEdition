@@ -8,6 +8,7 @@ public class Pet {
 	private String species;
 	private String race;
 	private int age;
+	private int id;
 	private ArrayList<Revision> revision;
 	
 	
@@ -20,16 +21,17 @@ public class Pet {
 		this.age = 0;
 	}
 	
-	public Pet(ArrayList<Revision> revision, String name, String species, String race, int age) {
+	public Pet(ArrayList<Revision> revision, String name, String species, String race, int age, int id) {
 		super();
 		this.revision = revision;
 		this.name = name;
 		this.species = species;
 		this.race = race;
 		this.age = age;
+		this.id = id;
 	}
 
-	
+
 	public ArrayList<Revision> getRevision() {
 		return revision;
 	}
@@ -73,10 +75,19 @@ public class Pet {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	
+	
+	public int getId() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	
 	@Override
 	public String toString() {
-		return "Pet Name=" + name + ", Species=" + species + ", Race=" + race + ", Age=" + age;
+		return "Pet Name=" + name + ", Species=" + species + ", Race=" + race + ", Age=" + age + ", ID =" + id;
 	}
 }

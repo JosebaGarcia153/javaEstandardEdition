@@ -6,9 +6,14 @@ public interface PetDAO {
 	
 	Pet searchById(int id) throws Exception;
 	
-	void addPet(ArrayList<Revision> revision, Pet pet);
+	Pet addPet(ArrayList<Revision> revision, Pet pet) throws Exception;
 	
 	ArrayList<Revision> findHistory(String name) throws Exception;
 	
-	void addHistory(Revision revision, Pet pet);
+	Revision addHistory(Revision revision, Pet pet);
+
+	Pet updatePet(Pet pet, int petId);
+
+	void deletePet(Pet pet, int petId);
+
 }
