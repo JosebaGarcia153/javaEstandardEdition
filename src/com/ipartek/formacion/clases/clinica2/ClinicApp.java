@@ -115,54 +115,54 @@ public class ClinicApp {
 			System.out.println("Insert the name of the animal:");
 			pet.setName(keyboard.nextLine());
 
-			System.out.println("Insert the species of the animal:");
-			pet.setSpecies(keyboard.nextLine());
-
-			System.out.println("Insert the race of the animal:");
-			pet.setRace(keyboard.nextLine());
-
-			System.out.println("Insert the age of the animal:");
-			pet.setAge(Integer.parseInt(keyboard.nextLine()));
-
-			do {
-				System.out.println("Insert the date (Format DD/MM/YYYY) the animal arrived:");
-				medicalHistory.setDate(keyboard.nextLine());
-
-				try {
-
-					date = LocalDate.parse(medicalHistory.getDate(), dateFormatter);
-					today = LocalDate.now();
-
-					if(date.isAfter(today)) {
-
-						System.out.println("The date must be today or older.");
-						check = false;
-
-					} else {
-
-						check = true;
-					}
-				}
-
-				catch (DateTimeParseException e) {
-					System.out.println("Invalid date format. DD/MM/YYYY");
-					check = false;
-				}
-
-			} while (check == false);
-
-			
-			System.out.println("Insert the ID of the doctor who treated it:");
-			medicalHistory.setDoctorId(Integer.parseInt(keyboard.nextLine()));
-			
-			System.out.println("Insert the reason for the visit to the clinic:");
-			medicalHistory.setReason(keyboard.nextLine());
-
-			System.out.println("Insert the diagnosis:");
-			medicalHistory.setDiagnosis(keyboard.nextLine());
-
-			System.out.println("Insert the treatment:");
-			medicalHistory.setTreatment(keyboard.nextLine());
+//			System.out.println("Insert the species of the animal:");
+//			pet.setSpecies(keyboard.nextLine());
+//
+//			System.out.println("Insert the race of the animal:");
+//			pet.setRace(keyboard.nextLine());
+//
+//			System.out.println("Insert the age of the animal:");
+//			pet.setAge(Integer.parseInt(keyboard.nextLine()));
+//
+//			do {
+//				System.out.println("Insert the date (Format DD/MM/YYYY) the animal arrived:");
+//				medicalHistory.setDate(keyboard.nextLine());
+//
+//				try {
+//
+//					date = LocalDate.parse(medicalHistory.getDate(), dateFormatter);
+//					today = LocalDate.now();
+//
+//					if(date.isAfter(today)) {
+//
+//						System.out.println("The date must be today or older.");
+//						check = false;
+//
+//					} else {
+//
+//						check = true;
+//					}
+//				}
+//
+//				catch (DateTimeParseException e) {
+//					System.out.println("Invalid date format. DD/MM/YYYY");
+//					check = false;
+//				}
+//
+//			} while (check == false);
+//
+//			
+//			System.out.println("Insert the ID of the doctor who treated it:");
+//			medicalHistory.setDoctorId(Integer.parseInt(keyboard.nextLine()));
+//			
+//			System.out.println("Insert the reason for the visit to the clinic:");
+//			medicalHistory.setReason(keyboard.nextLine());
+//
+//			System.out.println("Insert the diagnosis:");
+//			medicalHistory.setDiagnosis(keyboard.nextLine());
+//
+//			System.out.println("Insert the treatment:");
+//			medicalHistory.setTreatment(keyboard.nextLine());
 			
 
 			do {
@@ -313,14 +313,14 @@ public class ClinicApp {
 			System.out.println("Insert the name of the animal:");
 			pet.setName(keyboard.nextLine());
 
-			System.out.println("Insert the species of the animal:");
-			pet.setSpecies(keyboard.nextLine());
-
-			System.out.println("Insert the race of the animal:");
-			pet.setRace(keyboard.nextLine());
-
-			System.out.println("Insert the age of the animal:");
-			pet.setAge(Integer.parseInt(keyboard.nextLine()));
+//			System.out.println("Insert the species of the animal:");
+//			pet.setSpecies(keyboard.nextLine());
+//
+//			System.out.println("Insert the race of the animal:");
+//			pet.setRace(keyboard.nextLine());
+//
+//			System.out.println("Insert the age of the animal:");
+//			pet.setAge(Integer.parseInt(keyboard.nextLine()));
 			
 
 			do {

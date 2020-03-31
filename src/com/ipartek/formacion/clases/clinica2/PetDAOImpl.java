@@ -103,7 +103,7 @@ public class PetDAOImpl implements PetDAO {
 		
 			pet.setId(petId);
 				
-			animals.set(petId, pet);
+			animals.set((petId-1), pet);
 			
 			return pet;	
 	}
