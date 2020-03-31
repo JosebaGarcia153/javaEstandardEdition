@@ -12,7 +12,7 @@ public interface PetDAO {
 	
 	Revision addHistory(Revision revision, Pet pet);
 
-	Pet updatePet(Pet pet, int petId);
+	Pet updatePet(Pet pet, int petId) throws Exception;
 
 	void deletePet(Pet pet, int petId);
 

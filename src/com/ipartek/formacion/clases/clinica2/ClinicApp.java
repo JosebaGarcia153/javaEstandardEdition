@@ -371,7 +371,7 @@ public class ClinicApp {
 
 		System.out.println("Select one of the following actions:"
 				+ "\n 1)Register new pet."
-				+ "\n 2)Search pet by revision ID"
+				+ "\n 2)Search pet by ID."
 				+ "\n 3)Read pet's medical records."
 				+ "\n 4)Add new revision to a pet."
 				+ "\n 5)Update Pet."

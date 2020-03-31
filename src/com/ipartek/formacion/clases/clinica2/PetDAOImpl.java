@@ -57,7 +57,6 @@ public class PetDAOImpl implements PetDAO {
 			pet.setId(animals.get(i).getId());
 			if (pet.toString().equals(animals.get(i).toString())) {
 				check = true;
-				System.out.println(check);	
 			}
 		}
 
@@ -99,13 +98,24 @@ public class PetDAOImpl implements PetDAO {
 	
 	
 	@Override
-	public Pet updatePet(Pet pet, int petId) {
+	public Pet updatePet(Pet pet, int petId) throws Exception {
 		
 			pet.setId(petId);
-				
-			animals.set((petId-1), pet);
 			
-			return pet;	
+			for (Pet p: animals) {
+				
+				for (int i = 0; i < p.getRevision().size();i++) {
+					
+					if(petId == p.getId()) {
+						
+						animals.set((petId-1), pet);
+						
+						return pet;											
+					}	
+				}
+			}
+			
+			throw new Exception("The ID was not found.");
 	}
 	
 	
