@@ -16,4 +16,6 @@ public interface PetDAO {
 
 	void deletePet(Pet pet, int petId);
 
+	ArrayList<Pet> getAll();
+
 }

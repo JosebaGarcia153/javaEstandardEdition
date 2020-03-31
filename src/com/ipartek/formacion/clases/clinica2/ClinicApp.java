@@ -82,7 +82,13 @@ public class ClinicApp {
 					
 					deletePet();
 					break;
+					
 				case 7:
+					
+					getAll();
+					break;	
+					
+				case 8:
 
 					System.out.println("The program has been closed.");
 					break;
@@ -98,7 +104,7 @@ public class ClinicApp {
 				System.out.println(e.getMessage());
 			}
 
-		} while (options != 7);
+		} while (options != 8);
 
 		keyboard.close();
 	}
@@ -351,7 +357,7 @@ public class ClinicApp {
 		}
 	}
 
-
+	
 	private static void deletePet() throws Exception {
 		
 		System.out.println("What is the ID of the pet you want to delete?");
@@ -364,7 +370,13 @@ public class ClinicApp {
 		System.out.println("Entry deleted.");					
 	}
 
-
+	private static void getAll() throws Exception {
+		
+		for (int i = 0; i < petDAO.getAll().size(); i++) {
+			
+			System.out.println(petDAO.getAll().get(i).toString());
+		}
+	}
 	private static int instructions() {
 
 		int options = 0;
@@ -375,8 +387,9 @@ public class ClinicApp {
 				+ "\n 3)Read pet's medical records."
 				+ "\n 4)Add new revision to a pet."
 				+ "\n 5)Update Pet."
-				+ "\n 6)Delete Pet."	
-				+ "\n 7)Close the program.");
+				+ "\n 6)Delete Pet."
+				+ "\n 7)Get all entries."	
+				+ "\n 8)Close the program.");
 
 		try {
 

@@ -130,4 +130,10 @@ public class PetDAOImpl implements PetDAO {
 			}	
 		}
 	}
+	
+	@Override
+	public ArrayList<Pet> getAll() {
+		
+		return animals;
+	}
 }
