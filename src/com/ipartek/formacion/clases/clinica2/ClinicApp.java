@@ -242,7 +242,7 @@ public class ClinicApp {
 
 		try {
 			//Busca el previo animal por ID
-			System.out.println("Write one of the previous IDs of the animal:");
+			System.out.println("Write the ID of the animal:");
 			id = Integer.parseInt(keyboard.nextLine());
 			Pet pet = petDAO.searchById(id);
 
@@ -348,8 +348,9 @@ public class ClinicApp {
 
 				if ("y".equalsIgnoreCase(confirm)) {
 					
+					revision = pet.getRevision();
 					//Reemplaza un animal en PetDAOImpl -> updatePet()
-					System.out.println(petDAO.updatePet(pet, petId).toString() + " has been updated.");
+					System.out.println(petDAO.updatePet(pet, revision, petId).toString() + " has been updated.");
 					check = true;
 
 				} else if ("n".equalsIgnoreCase(confirm)) {

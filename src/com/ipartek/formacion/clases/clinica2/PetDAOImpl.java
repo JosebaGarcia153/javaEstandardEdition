@@ -104,7 +104,7 @@ public class PetDAOImpl implements PetDAO {
 	
 	
 	@Override
-	public Pet updatePet(Pet pet, int petId) throws Exception {
+	public Pet updatePet(Pet pet, ArrayList<Revision> revision, int petId) throws Exception {
 			
 			//Se asegura de que el animal mantenga el mismo ID tras editarlo
 			pet.setId(petId);
@@ -115,6 +115,7 @@ public class PetDAOImpl implements PetDAO {
 				//Encuentra el ID del animal a editar
 				if(petId == p.getId()) {
 					
+					pet.setRevision(revision);
 					//Edita el animal en la posicion ID-1 del arraylist
 					//porque los arraylist empiezan en 0 pero los IDs en 1
 					animals.set((petId-1), pet);
