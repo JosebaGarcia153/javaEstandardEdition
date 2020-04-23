@@ -12,13 +12,13 @@ public class PetDAOImpl implements PetDAO {
 	private static int IdCounter;
 	private boolean check = false;
 	
-	
+	//Constructor
 	private PetDAOImpl() {
 
 		this.animals = new ArrayList<Pet>();
 	}
 
-	
+	//Simpleton
 	public static PetDAOImpl getPetDAOImpl() {
 		
 		if (instance == null) {
@@ -33,11 +33,13 @@ public class PetDAOImpl implements PetDAO {
 	@Override
 	public Pet searchById(int id) throws Exception {
 
-
+		//Busca en cada animal en el arraylist de animales
 		for (Pet pet: animals) {
 			
+			//Busca en cada arraylist de revisiones del animal
 			for (int i = 0; i < pet.getRevision().size();i++) {
 				
+				//Busca si el ID existe
 				if(id == pet.getId()) {
 
 					return pet;											
@@ -52,14 +54,19 @@ public class PetDAOImpl implements PetDAO {
 	public Pet addPet(ArrayList<Revision> revision, Pet pet) throws Exception {
 
 		check = false;
-
+		
+		//Comprueba que no existe un animal identico antes de añadirlo
 		for (int i = 0; i < animals.size(); i++) {
+			
 			pet.setId(animals.get(i).getId());
+			
 			if (pet.toString().equals(animals.get(i).toString())) {
+				
 				check = true;
 			}
 		}
-
+		
+		//Si el animal no existe, lo añade al arraylist de animales
 		if (check == false) {
 			pet.setId(IdCounter);
 
@@ -75,11 +82,13 @@ public class PetDAOImpl implements PetDAO {
 
 	@Override
 	public ArrayList<Revision> findHistory(String name) throws Exception {
-
+		
+		//Busca el animal por nombre
 		for (int i = 0; i < animals.size(); i++) {
 			
 			if (name.equalsIgnoreCase(animals.get(i).getName())) {
 				
+				//Devuelve el historial del animal
 				return animals.get(i).getRevision();
 			}
 		}
@@ -90,31 +99,34 @@ public class PetDAOImpl implements PetDAO {
 	@Override
 	public Revision addHistory(Revision revision, Pet pet) {
 				
-				pet.getRevision().add(revision);
-				
-				return revision;
+		//Añade una nueva revision al historial de revisiones del animal	
+		pet.getRevision().add(revision);
+
+		return revision;
 
 	}
 	
 	
 	@Override
 	public Pet updatePet(Pet pet, int petId) throws Exception {
-		
+			
+			//Se asegura de que el animal mantenga el mismo ID tras editarlo
 			pet.setId(petId);
-			
+
+			//Recorre el arraylist de animales
 			for (Pet p: animals) {
-				
-				for (int i = 0; i < p.getRevision().size();i++) {
+
+				//Encuentra el ID del animal a editar
+				if(petId == p.getId()) {
 					
-					if(petId == p.getId()) {
-						
-						animals.set((petId-1), pet);
-						
-						return pet;											
-					}	
-				}
-			}
-			
+					//Edita el animal en la posicion ID-1 del arraylist
+					//porque los arraylist empiezan en 0 pero los IDs en 1
+					animals.set((petId-1), pet);
+					
+					//Devuelve el animal editado
+					return pet;											
+				}	
+			}	
 			throw new Exception("The ID was not found.");
 	}
 	
@@ -122,10 +134,12 @@ public class PetDAOImpl implements PetDAO {
 	@Override
 	public void deletePet(Pet pet, int petId) {
 		
+		//Busca el animal a borrar por su ID
 		for (int i = 0; i < animals.size(); i++) {
 			
 			if (animals.get(i).getId() == petId) {
-							
+				
+				//Borra el animal
 				animals.remove(i);			
 			}	
 		}
@@ -133,7 +147,7 @@ public class PetDAOImpl implements PetDAO {
 	
 	@Override
 	public ArrayList<Pet> getAll() {
-		
+		//Devuelve el arraylist de animales
 		return animals;
 	}
 }

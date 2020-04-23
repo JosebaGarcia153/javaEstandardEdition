@@ -46,7 +46,7 @@ public class ClinicApp {
 		do {
 			
 			try {
-
+				//Muestra las opciones
 				options = instructions();
 
 				switch (options) {
@@ -112,12 +112,13 @@ public class ClinicApp {
 	
 	private static void addPet() throws Exception {
 		
-		revision = new ArrayList<Revision>();
-		
+		//Crea nuevos objectos para añadir al arraylist de pets en PetDAOImpl
+		revision = new ArrayList<Revision>();		
 		medicalHistory = new Revision();
 		pet = new Pet();
 		
-		try {
+		//Datos que añadir a los objetos
+		try { 
 			System.out.println("Insert the name of the animal:");
 			pet.setName(keyboard.nextLine());
 
@@ -170,7 +171,7 @@ public class ClinicApp {
 			System.out.println("Insert the treatment:");
 			medicalHistory.setTreatment(keyboard.nextLine());
 			
-
+			//Confirma añadir los datos
 			do {
 				System.out.println("Are you sure you want to add this entry? Y/N");
 				confirm = keyboard.nextLine();
@@ -179,6 +180,7 @@ public class ClinicApp {
 					
 					revision.add(medicalHistory);
 					
+					//Ejecuta PetDAOImpl -> addPet()
 					System.out.println(petDAO.addPet(revision, pet).toString() + " has been created.");
 					check = true;
 
@@ -205,10 +207,11 @@ public class ClinicApp {
 	private static void findById() throws Exception {
 
 		try {
-			
+			//Pide por el ID a encontrar
 			System.out.println("Write the ID of the animal you want to find:");
 			id = Integer.parseInt(keyboard.nextLine());
-
+			
+			//Busca el ID en PetDAOImpl -> searchById()
 			System.out.println(petDAO.searchById(id).toString());
 
 		} catch (NumberFormatException e) {
@@ -220,9 +223,11 @@ public class ClinicApp {
 	
 	private static void findHistory() throws Exception {
 		
+		//Pide nombre a encontrar
 		System.out.println("Type the animal's name to find its medical records:");
 		name = (keyboard.nextLine());
 		
+		//Busca multiples nombres en PetDAOImpl -> searchById()
 		for (int i = 0; i < petDAO.findHistory(name).size(); i++) {
 			
 			System.out.println(petDAO.findHistory(name).get(i).toString());
@@ -231,16 +236,18 @@ public class ClinicApp {
 	
 	
 	private static void addHistory() throws Exception {
-
+		
+		//Crea nuevo historial medico para añadir a un animal ya creado
 		medicalHistory = new Revision();
 
 		try {
+			//Busca el previo animal por ID
 			System.out.println("Write one of the previous IDs of the animal:");
 			id = Integer.parseInt(keyboard.nextLine());
 			Pet pet = petDAO.searchById(id);
 
 			do {
-
+				//Inserta los datos de la nueva revision
 				System.out.println("Insert the date (Format DD/MM/YYYY) the animal arrived:");
 				medicalHistory.setDate(keyboard.nextLine());
 
@@ -281,11 +288,13 @@ public class ClinicApp {
 			medicalHistory.setDoctorId(newId);
 
 			do {
+				//Confirma la entrada de nuevos datos
 				System.out.println("Are you sure you want to add this entry? Y/N");
 				confirm = keyboard.nextLine();
 
 				if ("y".equalsIgnoreCase(confirm)) {
-
+					
+					//Añade el nuevo historial en PetDAOImpl -> addHistory()
 					System.out.println("The revision " + petDAO.addHistory(medicalHistory, pet).toString() + " has been added.");
 					check = true;
 
@@ -310,12 +319,15 @@ public class ClinicApp {
 	
 	private static void updatePet() throws Exception {
 		
+		//Pide el ID del animal a editar
 		System.out.println("What is the ID of the pet you want to edit?");
 		int petId = Integer.parseInt(keyboard.nextLine());
 		
+		//Confirma que el ID existe
 		petDAO.searchById(petId);
 		
 		try {
+			//Escribe lost nuevos datos del animal
 			System.out.println("Insert the name of the animal:");
 			pet.setName(keyboard.nextLine());
 
@@ -330,11 +342,13 @@ public class ClinicApp {
 			
 
 			do {
+				//Confirma la entrada de datos
 				System.out.println("Are you sure you want to edit this entry? Y/N");
 				confirm = keyboard.nextLine();
 
 				if ("y".equalsIgnoreCase(confirm)) {
 					
+					//Reemplaza un animal en PetDAOImpl -> updatePet()
 					System.out.println(petDAO.updatePet(pet, petId).toString() + " has been updated.");
 					check = true;
 
@@ -360,11 +374,14 @@ public class ClinicApp {
 	
 	private static void deletePet() throws Exception {
 		
+		//Pregunta el ID del animal a borrar
 		System.out.println("What is the ID of the pet you want to delete?");
 		int petId = Integer.parseInt(keyboard.nextLine());
 		
+		//Confirma que el ID existe
 		petDAO.searchById(petId);
 		
+		//Borra el animal en PetDAOImpl -> deletePet()
 		petDAO.deletePet(pet, petId);
 		
 		System.out.println("Entry deleted.");					
@@ -372,6 +389,7 @@ public class ClinicApp {
 
 	private static void getAll() throws Exception {
 		
+		//Muestra todos los animales desde PetDAOImpl -> getAll()
 		for (int i = 0; i < petDAO.getAll().size(); i++) {
 			
 			System.out.println(petDAO.getAll().get(i).toString());
@@ -392,7 +410,7 @@ public class ClinicApp {
 				+ "\n 8)Close the program.");
 
 		try {
-
+			//Inserta por teclado el numero de la opcion a ejecutar
 			options = Integer.parseInt(keyboard.nextLine());
 
 		} catch (Exception e) {
