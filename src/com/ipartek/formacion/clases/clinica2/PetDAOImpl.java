@@ -35,16 +35,12 @@ public class PetDAOImpl implements PetDAO {
 
 		//Busca en cada animal en el arraylist de animales
 		for (Pet pet: animals) {
-			
-			//Busca en cada arraylist de revisiones del animal
-			for (int i = 0; i < pet.getRevision().size();i++) {
 				
 				//Busca si el ID existe
 				if(id == pet.getId()) {
 
 					return pet;											
 				}	
-			}
 		}
 		throw new Exception("The ID was not found.");
 	}

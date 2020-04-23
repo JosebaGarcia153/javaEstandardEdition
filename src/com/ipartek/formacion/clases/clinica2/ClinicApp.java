@@ -207,11 +207,11 @@ public class ClinicApp {
 	private static void findById() throws Exception {
 
 		try {
-			//Pide por el ID a encontrar
+			//Pide el ID a encontrar
 			System.out.println("Write the ID of the animal you want to find:");
 			id = Integer.parseInt(keyboard.nextLine());
 			
-			//Busca el ID en PetDAOImpl -> searchById()
+			//Recive el animal desde PetDAOImpl -> searchById()
 			System.out.println(petDAO.searchById(id).toString());
 
 		} catch (NumberFormatException e) {
@@ -227,7 +227,7 @@ public class ClinicApp {
 		System.out.println("Type the animal's name to find its medical records:");
 		name = (keyboard.nextLine());
 		
-		//Busca multiples nombres en PetDAOImpl -> searchById()
+		//Recibe todos los animales con el nombre desde PetDAOImpl -> searchById()
 		for (int i = 0; i < petDAO.findHistory(name).size(); i++) {
 			
 			System.out.println(petDAO.findHistory(name).get(i).toString());
